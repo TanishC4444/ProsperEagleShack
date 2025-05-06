@@ -266,7 +266,8 @@ function showAnnouncementForm(mode, announcementData = null) {
     announcementFormTitle.textContent = mode === 'add' ? 'Add New Announcement' : 'Edit Announcement';
     
     // Clear form
-    announcementEditor.reset();
+    announcementEditor.re
+    set();
     
     // If editing, fill the form with announcement data
     if (mode === 'edit' && announcementData) {

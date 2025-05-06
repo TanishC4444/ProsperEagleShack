@@ -1609,7 +1609,9 @@ section {
 
 .google-form-container iframe {
     display: block;
+    margin: 0 auto;
     border: none;
+    height: 600px;
 }
 
 @media (max-width: 768px) {
