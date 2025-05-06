@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Eagle Shack</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <i class="fas fa-store logo-icon"></i>
+                <span class="logo-text">Eagle Shack</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="main.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="main.html#announcements" class="nav-link">Announcements</a></li>
+                <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer Opportunities</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="logout-btn">Logout</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard Header -->
+    <section class="admin-header">
+        <div class="container">
+            <div class="admin-welcome">
+                <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+                <p>Welcome, <span id="admin-name">Administrator</span>! Manage Eagle Shack announcements and volunteer opportunities here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard Tabs -->
+    <section class="admin-dashboard">
+        <div class="container">
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="announcements"><i class="fas fa-bullhorn"></i> Announcements</button>
+                <button class="tab-btn" data-tab="volunteer"><i class="fas fa-hands-helping"></i> Volunteer Opportunities</button>
+            </div>
+
+            <!-- Announcements Tab Content -->
+            <div class="tab-content active" id="announcements-tab">
+                <div class="admin-section-header">
+                    <h2>Manage Announcements</h2>
+                    <button class="add-btn" id="add-announcement-btn"><i class="fas fa-plus"></i> Add New</button>
+                </div>
+
+                <!-- Add/Edit Announcement Form -->
+                <div class="admin-form" id="announcement-form" style="display: none;">
+                    <h3 id="announcement-form-title">Add New Announcement</h3>
+                    <form id="announcement-editor">
+                        <input type="hidden" id="announcement-id">
+                        
+                        <div class="form-group">
+                            <label for="announcement-title">Title</label>
+                            <input type="text" id="announcement-title" name="announcement-title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="announcement-content">Content</label>
+                            <textarea id="announcement-content" name="announcement-content" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="announcement-date">Date</label>
+                            <input type="date" id="announcement-date" name="announcement-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="announcement-priority">Priority</label>
+                            <select id="announcement-priority" name="announcement-priority">
+                                <option value="normal">Normal</option>
+                                <option value="important">Important</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">Save Announcement</button>
+                            <button type="button" class="cancel-btn" id="cancel-announcement-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Announcements List -->
+                <div class="admin-items-list" id="admin-announcements-list">
+                    <!-- Announcements will be loaded here dynamically -->
+                    <div class="admin-list-message">Loading announcements...</div>
+                </div>
+            </div>
+
+            <!-- Volunteer Opportunities Tab Content -->
+            <div class="tab-content" id="volunteer-tab">
+                <div class="admin-section-header">
+                    <h2>Manage Volunteer Opportunities & Internships</h2>
+                    <button class="add-btn" id="add-opportunity-btn"><i class="fas fa-plus"></i> Add New</button>
+                </div>
+
+                <!-- Add/Edit Opportunity Form -->
+                <div class="admin-form" id="opportunity-form" style="display: none;">
+                    <h3 id="opportunity-form-title">Add New Volunteer Opportunity</h3>
+                    <form id="opportunity-editor">
+                        <input type="hidden" id="opportunity-id">
+                        
+                        <div class="form-group">
+                            <label for="opportunity-title">Title</label>
+                            <input type="text" id="opportunity-title" name="opportunity-title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="opportunity-type">Type</label>
+                            <select id="opportunity-type" name="opportunity-type">
+                                <option value="volunteer">Volunteer Position</option>
+                                <option value="internship">Internship</option>
+                                <option value="event">Event Support</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="opportunity-description">Description</label>
+                            <textarea id="opportunity-description" name="opportunity-description" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-group form-row">
+                            <div class="form-col">
+                                <label for="opportunity-date">Date</label>
+                                <input type="date" id="opportunity-date" name="opportunity-date" required>
+                            </div>
+                            <div class="form-col">
+                                <label for="opportunity-time">Time</label>
+                                <input type="time" id="opportunity-time" name="opportunity-time">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="opportunity-location">Location</label>
+                            <input type="text" id="opportunity-location" name="opportunity-location" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="opportunity-slots">Available Slots</label>
+                            <input type="number" id="opportunity-slots" name="opportunity-slots" min="1" value="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="opportunity-contact">Contact Person</label>
+                            <input type="text" id="opportunity-contact" name="opportunity-contact" required>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">Save Opportunity</button>
+                            <button type="button" class="cancel-btn" id="cancel-opportunity-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Opportunities List -->
+                <div class="admin-items-list" id="admin-opportunities-list">
+                    <!-- Opportunities will be loaded here dynamically -->
+                    <div class="admin-list-message">Loading volunteer opportunities...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-store logo-icon"></i>
+                        <h2>Eagle Shack</h2>
+                    </div>
+                    <p class="footer-description">Prosper High School's student-run store providing snacks, drinks, school supplies, merchandise, and event concessions at competitive prices.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links contact-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Prosper High School</li>
+                        <li><i class="fas fa-envelope"></i> eagleshack@prosperhigh.edu</li>
+                        <li><i class="fas fa-user"></i> Advisor: Mr. Foster</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eagle Shack - Prosper High School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>

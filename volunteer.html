@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer - Eagle Shack</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <i class="fas fa-store logo-icon"></i>
+                <span class="logo-text">Eagle Shack</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="main.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="main.html#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="main.html#pricing" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="volunteer.html" class="nav-link active">Volunteer</a></li>
+                <li class="nav-item"><a href="main.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="main.html#announcements" class="nav-link">Announcements</a></li>
+                <li class="nav-item"><a href="login.html" class="nav-link login-link">Admin Login</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for Volunteer Page -->
+    <section class="hero-section volunteer-hero">
+        <div class="hero-shapes">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-hands-helping"></i> Join Our Team
+                </div>
+                <h1 class="hero-title">Volunteer at <span>Eagle Shack</span></h1>
+                <p class="hero-description">Gain real-world business experience, earn community service hours, and make a difference at your school!</p>
+                <div class="hero-buttons">
+                    <a href="#opportunities" class="cta-button">
+                        <i class="fas fa-clipboard-list"></i> View Opportunities
+                    </a>
+                    <a href="#benefits" class="secondary-button">
+                        <i class="fas fa-award"></i> Benefits & Requirements
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Volunteer With Us?</h2>
+                <p class="section-description">Develop valuable skills while serving your school community</p>
+            </div>
+            
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="benefit-title">Service Hours</h3>
+                    <p class="benefit-description">Earn community service hours recognized by colleges, honor societies, and scholarship applications.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="benefit-title">Business Experience</h3>
+                    <p class="benefit-description">Gain hands-on experience in retail operations, customer service, inventory management, and marketing.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="benefit-title">Leadership Roles</h3>
+                    <p class="benefit-description">Opportunity to advance to management positions and develop crucial leadership skills.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="benefit-title">College Application</h3>
+                    <p class="benefit-description">Stand out on college applications with meaningful extracurricular involvement and demonstrated commitment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="requirements-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Volunteer Requirements</h2>
+                <p class="section-description">What you need to know before joining our team</p>
+            </div>
+            
+            <div class="requirements-list">
+                <div class="requirement-item">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Must be a current Prosper High School student in good academic standing</p>
+                </div>
+                
+                <div class="requirement-item">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Commit to at least 2 hours per week for a minimum of one semester</p>
+                </div>
+                
+                <div class="requirement-item">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Maintain professional appearance and behavior while representing Eagle Shack</p>
+                </div>
+                
+                <div class="requirement-item">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Complete the required training session before your first shift</p>
+                </div>
+                
+                <div class="requirement-item">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Ability to work during lunch periods, before/after school, or during special events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section -->
+    <section class="opportunities-section" id="opportunities">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Current Opportunities</h2>
+                <p class="section-description">Join our team in one of these exciting roles</p>
+            </div>
+            
+            <!-- Opportunity Cards Container -->
+            <div class="opportunities-container" id="opportunities-container">
+                <!-- Opportunities will be dynamically loaded here -->
+                <div class="opportunity-card">
+                    <div class="opportunity-type volunteer">Volunteer Position</div>
+                    <h3 class="opportunity-title">Sales Associate</h3>
+                    <p class="opportunity-details"><i class="fas fa-map-marker-alt"></i> Main Store</p>
+                    <p class="opportunity-details"><i class="fas fa-calendar"></i> Monday-Friday</p>
+                    <p class="opportunity-details"><i class="fas fa-clock"></i> All Lunch Periods</p>
+                    <p class="opportunity-description">Assist customers with purchases, maintain store inventory, and operate the cash register during lunch periods.</p>
+                    <div class="opportunity-footer">
+                        <span class="slots-available"><i class="fas fa-user-plus"></i> 5 slots available</span>
+                        <a href="#application-form" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+                
+                <div class="opportunity-card">
+                    <div class="opportunity-type event">Event Support</div>
+                    <h3 class="opportunity-title">Football Game Concessions</h3>
+                    <p class="opportunity-details"><i class="fas fa-map-marker-alt"></i> Football Stadium</p>
+                    <p class="opportunity-details"><i class="fas fa-calendar"></i> Friday, May 9, 2025</p>
+                    <p class="opportunity-details"><i class="fas fa-clock"></i> 5:30 PM - 9:30 PM</p>
+                    <p class="opportunity-description">Help run the concession stand during home football games. Duties include food preparation, sales, and inventory management.</p>
+                    <div class="opportunity-footer">
+                        <span class="slots-available"><i class="fas fa-user-plus"></i> 10 slots available</span>
+                        <a href="#application-form" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+                
+                <div class="opportunity-card">
+                    <div class="opportunity-type internship">Internship</div>
+                    <h3 class="opportunity-title">Marketing Assistant</h3>
+                    <p class="opportunity-details"><i class="fas fa-map-marker-alt"></i> Eagle Shack Office</p>
+                    <p class="opportunity-details"><i class="fas fa-calendar"></i> Fall Semester 2025</p>
+                    <p class="opportunity-details"><i class="fas fa-clock"></i> 5 hours weekly</p>
+                    <p class="opportunity-description">Create promotional materials, manage social media accounts, and develop marketing strategies for the store and special events.</p>
+                    <div class="opportunity-footer">
+                        <span class="slots-available"><i class="fas fa-user-plus"></i> 2 slots available</span>
+                        <a href="#application-form" class="apply-btn">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="application-section" id="application-form">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Volunteer Application</h2>
+                <p class="section-description">Complete the form below to apply for a volunteer position</p>
+            </div>
+            
+            <div class="google-form-container">
+                <!-- Replace the src attribute with your actual Google Form embed URL -->
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScgxfOP4IIKjq-fIv2ybubAezu9odenMONIxE08OSRgAaZBLQ/viewform?embedded=true" width="640" height="1829" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-description">Common questions about volunteering with Eagle Shack</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How many hours can I volunteer each week?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We request a minimum commitment of 2 hours per week, but you can volunteer for as many as 10 hours weekly depending on your availability and our needs. Many volunteers work during their lunch periods and special events.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I need prior experience to volunteer?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No prior experience is required! We provide comprehensive training for all volunteers. Your enthusiasm, reliability, and willingness to learn are the most important qualities we look for.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I receive community service hours for volunteering?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We track all volunteer hours and provide official documentation for community service requirements, scholarship applications, and college admissions. Hours count toward National Honor Society, Key Club, and other service organizations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What leadership opportunities are available?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>After completing at least one semester as a volunteer, students may apply for leadership positions such as Shift Manager, Marketing Coordinator, Inventory Manager, or Event Coordinator. These positions offer additional responsibilities and leadership experience.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How quickly will I hear back after applying?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically review applications within 3-5 business days. Selected applicants will be invited for a brief orientation session before their first volunteer shift. Due to high interest, we cannot accept all applicants each semester.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Have More Questions?</h2>
+                <p class="section-description">Contact our volunteer coordinator for more information</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>eagleshack@prosperhigh.edu</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-user"></i>
+                        <p>Volunteer Coordinator: Ms. Reynolds</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Eagle Shack Store (Near Cafeteria)</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Office Hours: Mon-Fri, 8:00 AM - 4:30 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-store logo-icon"></i>
+                        <h2>Eagle Shack</h2>
+                    </div>
+                    <p class="footer-description">Prosper High School's student-run store providing snacks, drinks, school supplies, merchandise, and event concessions at competitive prices.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="main.html">Home</a></li>
+                        <li><a href="main.html#products">Products</a></li>
+                        <li><a href="main.html#pricing">Pricing</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="main.html#about">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Retail Store</a></li>
+                        <li><a href="https://forms.gle/JQ7RtuvGupaYEzrN6">Club Partnership</a></li>
+                        <li><a href="https://forms.gle/531Rj7N3xjwuSQ4j7">Custom Shirt Orders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links contact-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Prosper High School</li>
+                        <li><i class="fas fa-envelope"></i> eagleshack@prosperhigh.edu</li>
+                        <li><i class="fas fa-user"></i> Advisor: Mr. Foster</li>
+                        <li><a href="https://forms.gle/tqpL57TMnWR2yXtAA" target="_blank"><i class="fas fa-comment"></i> Product Survey Form</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eagle Shack - Prosper High School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="volunteer.js"></script>
+</body>
+</html>

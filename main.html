@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eagle Shack - Prosper High School Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <i class="fas fa-store logo-icon"></i>
+                <span class="logo-text">Eagle Shack</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="main.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#announcements" class="nav-link">Announcements</a></li>
+                <li class="nav-item"><a href="login.html" class="nav-link login-link">Admin Login</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-shapes">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-store"></i> Prosper's School Store
+                </div>
+                <h1 class="hero-title">Welcome to <span>Eagle Shack</span></h1>
+                <p class="hero-description">Your convenient on-campus destination for snacks, drinks, school merchandise, and event concessions - all at competitive prices!</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="cta-button">
+                        <i class="fas fa-shopping-cart"></i> View Products
+                    </a>
+                    <a href="volunteer.html" class="secondary-button">
+                        <i class="fas fa-hands-helping"></i> Volunteer With Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcements Section -->
+    <section class="announcements-section" id="announcements">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest Announcements</h2>
+                <p class="section-description">Stay updated with the latest news from Eagle Shack</p>
+            </div>
+            
+            <div class="announcements-container" id="announcements-container">
+                <!-- Announcements will be dynamically loaded here -->
+                <div class="announcement-card">
+                    <div class="announcement-header">
+                        <span class="announcement-date">May 1, 2025</span>
+                        <span class="announcement-badge important">Important</span>
+                    </div>
+                    <h3 class="announcement-title">Summer Internship Applications Now Open</h3>
+                    <p class="announcement-content">Eagle Shack is now accepting applications for paid summer internships! Positions available in retail management, marketing, and inventory control. Applications due by May 15th.</p>
+                </div>
+                
+                <div class="announcement-card">
+                    <div class="announcement-header">
+                        <span class="announcement-date">April 28, 2025</span>
+                        <span class="announcement-badge normal">News</span>
+                    </div>
+                    <h3 class="announcement-title">New Spirit Merchandise Available</h3>
+                    <p class="announcement-content">Show your Prosper pride with our new collection of spirit wear! Just arrived: hoodies, t-shirts, and caps featuring the new school logo. Available in all sizes while supplies last.</p>
+                </div>
+                
+                <div class="announcement-card">
+                    <div class="announcement-header">
+                        <span class="announcement-date">April 25, 2025</span>
+                        <span class="announcement-badge normal">News</span>
+                    </div>
+                    <h3 class="announcement-title">Extended Hours for Finals Week</h3>
+                    <p class="announcement-content">Starting May 10th, Eagle Shack will open one hour earlier (7:30 AM) during finals week to help students fuel up for their exams. Energy drinks and healthy snacks will be fully stocked!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Popular Products</h2>
+                <p class="section-description">Choose from over 250 items including snacks, beverages, school supplies, and spirit merchandise at unbeatable prices.</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-cookie"></i></div>
+                    <div class="step-content">
+                        <h3 class="step-title">Snacks</h3>
+                        <p class="step-description">
+                            Enjoy a variety of snacks including Cheetos, Doritos, Takis, Hot Fries, Lay's Chips, Zebra Cakes, Rice Krispies Treats, and more - all at just $1.25 per item!
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-candy-cane"></i></div>
+                    <div class="step-content">
+                        <h3 class="step-title">Candy & Chocolate</h3>
+                        <p class="step-description">
+                            Satisfy your sweet tooth with Hershey's, KitKat, Snickers, Reese's, M&M's, Skittles, and more varieties of chocolate and candy - all priced at just $2.00!
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-tint"></i></div>
+                    <div class="step-content">
+                        <h3 class="step-title">Bottled Drinks</h3>
+                        <p class="step-description">
+                            Stay hydrated with our selection of bottled drinks including Gatorade, Powerade, Life Water, and various juices - available for just $2.00 each!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-categories">
+                <div class="product-category">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="category-title">Spirit Wear</h3>
+                    <p class="category-description">T-shirts, hoodies, caps, and more with Prosper High logos and designs</p>
+                </div>
+                
+                <div class="product-category">
+                    <div class="category-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3 class="category-title">School Supplies</h3>
+                    <p class="category-description">Notebooks, pens, pencils, erasers, calculators, and other essentials</p>
+                </div>
+                
+                <div class="product-category">
+                    <div class="category-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="category-title">Gift Items</h3>
+                    <p class="category-description">Mugs, keychains, phone accessories, and more Prosper-themed items</p>
+                </div>
+                
+                <div class="product-category">
+                    <div class="category-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3 class="category-title">Event Tickets</h3>
+                    <p class="category-description">Tickets for school dances, performances, and special events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Pricing Guide</h2>
+                <p class="section-description">Competitive prices to fit every student's budget</p>
+            </div>
+            
+            <div class="pricing-tables">
+                <div class="pricing-table">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="fas fa-cookie-bite"></i>
+                        </div>
+                        <h3 class="pricing-title">Snacks</h3>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <span class="feature-name">Chips (All Varieties)</span>
+                            <span class="feature-price">$1.25</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Cookies & Pastries</span>
+                            <span class="feature-price">$1.25</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Granola & Protein Bars</span>
+                            <span class="feature-price">$1.50</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Fruit Snacks</span>
+                            <span class="feature-price">$1.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Trail Mix</span>
+                            <span class="feature-price">$1.50</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-table">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="fas fa-candy-cane"></i>
+                        </div>
+                        <h3 class="pricing-title">Candy & Chocolate</h3>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <span class="feature-name">Chocolate Bars</span>
+                            <span class="feature-price">$2.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Candy Packets</span>
+                            <span class="feature-price">$2.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Gum</span>
+                            <span class="feature-price">$1.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Mints</span>
+                            <span class="feature-price">$1.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Seasonal Treats</span>
+                            <span class="feature-price">$2.25</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-table">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3 class="pricing-title">Beverages</h3>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <span class="feature-name">Water Bottles</span>
+                            <span class="feature-price">$1.50</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Sports Drinks</span>
+                            <span class="feature-price">$2.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Juice</span>
+                            <span class="feature-price">$2.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Soda</span>
+                            <span class="feature-price">$1.75</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Energy Drinks</span>
+                            <span class="feature-price">$2.50</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-table">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3 class="pricing-title">Spirit Wear</h3>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <span class="feature-name">T-Shirts</span>
+                            <span class="feature-price">$15.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Hoodies</span>
+                            <span class="feature-price">$30.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Caps & Beanies</span>
+                            <span class="feature-price">$12.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Lanyards</span>
+                            <span class="feature-price">$5.00</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <span class="feature-name">Stickers</span>
+                            <span class="feature-price">$2.00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Eagle Shack</h2>
+                <p class="section-description">Learn more about our student-run school store</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/Users/tanishchauhan/Desktop/cs3 redo/IMG_9714.jpeg" alt="Eagle Shack Store">
+                </div>
+                
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>Eagle Shack was established in 2020 as a student-run business initiative at Prosper High School. What began as a small concession stand has grown into a full-service school store providing hundreds of products to students, staff, and visitors.</p>
+                    
+                    <h3>Our Mission</h3>
+                    <p>Our mission is to provide convenient access to snacks, beverages, school supplies, and spirit merchandise while creating hands-on business experience for student volunteers. We aim to serve the Prosper High School community with quality products at affordable prices.</p>
+                    
+                    <h3>Business Education</h3>
+                    <p>Eagle Shack serves as a practical learning lab for business and marketing students. Our student volunteers gain real-world experience in retail operations, inventory management, customer service, marketing, and financial management.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">250+</div>
+                            <div class="stat-label">Products</div>
+                        </div>
+                        
+                        <div class="stat">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Student Volunteers</div>
+                        </div>
+                        
+                        <div class="stat">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Years of Service</div>
+                        </div>
+                        
+                        <div class="stat">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Daily Customers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-description">More than just a school store</p>
+            </div>
+            
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="service-title">Retail Store</h3>
+                    <p class="service-description">Our main store offers snacks, drinks, school supplies, and spirit wear during school hours and special events.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="service-title">Club Merchandise</h3>
+                    <p class="service-description">We partner with school clubs and organizations to sell their custom merchandise and fundraising items.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3 class="service-title">Event Concessions</h3>
+                    <p class="service-description">Eagle Shack provides concession services for sporting events, performances, and special school events.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <h3 class="service-title">Food Stands</h3>
+                    <p class="service-description">We operate food booths at school festivals, homecoming activities, and community events.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="service-title">Fundraising Support</h3>
+                    <p class="service-description">We provide merchandise and sales support for clubs, teams, and organizations raising funds.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="service-title">Business Education</h3>
+                    <p class="service-description">Eagle Shack serves as a practical learning lab for business and marketing students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Join Our Team!</h2>
+            <p class="cta-description">Gain valuable business experience while serving your school community.</p>
+            <div class="cta-buttons">
+                <a href="volunteer.html" class="cta-button">
+                    <i class="fas fa-users"></i> View Opportunities
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-store logo-icon"></i>
+                        <h2>Eagle Shack</h2>
+                    </div>
+                    <p class="footer-description">Prosper High School's student-run store providing snacks, drinks, school supplies, merchandise, and event concessions at competitive prices.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="main.html">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Retail Store</a></li>
+                        <li><a href="https://forms.gle/JQ7RtuvGupaYEzrN6">Club Partnership</a></li>
+                        <li><a href="https://forms.gle/531Rj7N3xjwuSQ4j7">Custom Shirt Orders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links contact-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Prosper High School</li>
+                        <li><i class="fas fa-envelope"></i> eagleshack@prosperhigh.edu</li>
+                        <li><i class="fas fa-user"></i> Advisor: Mr. Foster</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eagle Shack - Prosper High School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
