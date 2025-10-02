@@ -102,6 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
     loadOpportunities();
 });
 
+/**
+ * initNavigation
+ * Purpose: Initialize navigation functionality including mobile menu toggle and smooth scrolling
+ * Input: None
+ * Output: return: None, environment changes: Sets up event listeners for navigation elements
+ * Error handling: Returns early if nav elements don't exist
+ */
 // Navigation functions
 function initNavigation() {
     if (!navToggle || !navMenu) return;
@@ -146,6 +153,13 @@ function initNavigation() {
     });
 }
 
+/**
+ * initScrollEvents
+ * Purpose: Initialize scroll-related events like back-to-top button visibility
+ * Input: None
+ * Output: return: None, environment changes: Sets up scroll event listeners
+ * Error handling: Returns early if back-to-top button doesn't exist
+ */
 // Scroll events
 function initScrollEvents() {
     if (!backToTopButton) return;
@@ -168,13 +182,29 @@ function initScrollEvents() {
     });
 }
 
+/**
+ * loadAnnouncements
+ * Purpose: Load and display announcements in the UI
+ * Input: None
+ * Output: return: None, environment changes: Populates the announcementsContainer with announcement cards
+ * Error handling: Returns early if container doesn't exist, shows placeholder if no announcements
+ */
 // Load announcements
 function loadAnnouncements() {
     if (!announcementsContainer) return;
     
     announcementsContainer.innerHTML = '';
     
-    if (announcements.length === 0) {
+    // Filter out announcements older than 2 weeks
+    const twoWeeksAgo = new Date();
+    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+    
+    const recentAnnouncements = announcements.filter(announcement => {
+        const announcementDate = new Date(announcement.date);
+        return announcementDate >= twoWeeksAgo;
+    });
+    
+    if (recentAnnouncements.length === 0) {
         announcementsContainer.innerHTML = `
             <div class="announcement-placeholder">
                 <p>No announcements at this time.</p>
@@ -184,7 +214,7 @@ function loadAnnouncements() {
     }
     
     // Sort announcements by date (newest first) and priority
-    const sortedAnnouncements = [...announcements].sort((a, b) => {
+    const sortedAnnouncements = [...recentAnnouncements].sort((a, b) => {
         // First sort by priority (urgent > important > normal)
         const priorityOrder = { urgent: 0, important: 1, normal: 2 };
         if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
@@ -214,6 +244,13 @@ function loadAnnouncements() {
     });
 }
 
+/**
+ * loadOpportunities
+ * Purpose: Load and display volunteer opportunities in the UI
+ * Input: None
+ * Output: return: None, environment changes: Populates the opportunitiesContainer with opportunity cards
+ * Error handling: Returns early if container doesn't exist, shows placeholder if no opportunities
+ */
 // Load volunteer opportunities
 function loadOpportunities() {
     if (!opportunitiesContainer) return;
@@ -278,6 +315,13 @@ function loadOpportunities() {
     });
 }
 
+/**
+ * formatDate
+ * Purpose: Format a date string into a readable format
+ * Input: dateString (string)
+ * Output: return: Formatted date string, environment changes: None
+ * Error handling: None
+ */
 // Helper function for formatting dates
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -304,24 +348,45 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+/**
+ * getOpportunitiesByType
+ * Purpose: Filter opportunities by their type category
+ * Input: type (string)
+ * Output: return: Array of filtered opportunities, environment changes: None
+ * Error handling: None
+ */
 // Example: Filter opportunities by type
 function getOpportunitiesByType(type) {
     return opportunities.filter(opp => opp.type === type);
   }
   
-  // Example: Get total available slots across all opportunities
-  function getTotalAvailableSlots() {
+/**
+ * getTotalAvailableSlots
+ * Purpose: Calculate the total number of available slots across all opportunities
+ * Input: None
+ * Output: return: Total number of slots (number), environment changes: None
+ * Error handling: None
+ */
+// Example: Get total available slots across all opportunities
+function getTotalAvailableSlots() {
     return opportunities.reduce((total, opp) => total + opp.slots, 0);
   }
   
-  // Example: Group announcements by priority
-  function getAnnouncementsByPriority() {
+/**
+ * getAnnouncementsByPriority
+ * Purpose: Group announcements by their priority level
+ * Input: None
+ * Output: return: Object with priorities as keys and arrays of announcements as values, environment changes: None
+ * Error handling: None
+ */
+// Example: Group announcements by priority
+function getAnnouncementsByPriority() {
     return announcements.reduce((groups, announcement) => {
-      const priority = announcement.priority;
-      if (!groups[priority]) {
+    const priority = announcement.priority;
+    if (!groups[priority]) {
         groups[priority] = [];
-      }
-      groups[priority].push(announcement);
-      return groups;
+    }
+    groups[priority].push(announcement);
+    return groups;
     }, {});
-  }
+}

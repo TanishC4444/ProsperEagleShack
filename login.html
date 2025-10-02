@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Eagle Shack</title>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
+
+    <!-- Navigation Bar Section -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-logo">
                 <i class="fas fa-store logo-icon"></i>
                 <span class="logo-text">Eagle Shack</span>
             </div>
+            
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="index.html#products" class="nav-link">Products</a></li>
@@ -24,6 +27,7 @@
                 <li class="nav-item"><a href="index.html#announcements" class="nav-link">Announcements</a></li>
                 <li class="nav-item"><a href="login.html" class="nav-link login-link active">Admin Login</a></li>
             </ul>
+            
             <div class="nav-toggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -35,92 +39,65 @@
         <div class="container">
             <div class="auth-container">
                 <div class="auth-box">
+                    <!-- Login Header -->
                     <div class="auth-header">
-                        <h2><i class="fas fa-lock"></i> Admin Login</h2>
-                        <p>Access the admin dashboard to manage announcements and volunteer opportunities</p>
+                        <h2><i class="fas fa-lock"></i> Administrator Access</h2>
+                        <p>Enter the administrator password to access the dashboard</p>
                     </div>
                     
+                    <!-- Simplified Login Form - Password Only -->
                     <form id="login-form" class="auth-form">
+                        <!-- Password Field -->
                         <div class="form-group">
-                            <label for="username"><i class="fas fa-user"></i> Username</label>
-                            <input type="text" id="username" name="username" required>
+                            <label for="password"><i class="fas fa-key"></i> Administrator Password</label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Enter password"
+                                required 
+                                autocomplete="current-password"
+                            >
                         </div>
                         
+                        <!-- Login Button -->
                         <div class="form-group">
-                            <label for="password"><i class="fas fa-key"></i> Password</label>
-                            <input type="password" id="password" name="password" required>
+                            <button type="submit" class="auth-button">
+                                <i class="fas fa-sign-in-alt"></i> Access Dashboard
+                            </button>
                         </div>
                         
-                        <div class="form-group auth-options">
-                            <div class="remember-me">
-                                <input type="checkbox" id="remember" name="remember">
-                                <label for="remember">Remember me</label>
-                            </div>
-                            <a href="#" class="forgot-password" id="create-account">Create Account</a>
-                        </div>
-                        
-                        <div class="form-group">
-                            <button type="submit" class="auth-button">Login</button>
-                        </div>
-                        
+                        <!-- Login Message Display Area -->
                         <div class="auth-message" id="auth-message"></div>
                     </form>
-                    
-                    <form id="signup-form" class="auth-form" style="display: none;">
-                        <div class="form-group">
-                            <label for="new-username"><i class="fas fa-user"></i> Username</label>
-                            <input type="text" id="new-username" name="new-username" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="new-password"><i class="fas fa-key"></i> Password</label>
-                            <input type="password" id="new-password" name="new-password" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="confirm-password"><i class="fas fa-key"></i> Confirm Password</label>
-                            <input type="password" id="confirm-password" name="confirm-password" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="admin-code"><i class="fas fa-shield-alt"></i> Admin Code</label>
-                            <input type="password" id="admin-code" name="admin-code" required>
-                            <small>This is a special code provided to authorized Eagle Shack administrators</small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <button type="submit" class="auth-button">Create Account</button>
-                        </div>
-                        
-                        <div class="form-group">
-                            <button type="button" id="back-to-login" class="secondary-button">Back to Login</button>
-                        </div>
-                        
-                        <div class="auth-message" id="signup-message"></div>
-                    </form>
-                    
+
+                    <!-- Back to Home Link -->
+                    <div class="auth-footer" style="text-align: center; margin-top: 20px;">
+                        <a href="index.html" class="forgot-password">
+                            <i class="fas fa-arrow-left"></i> Back to Home
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer class="footer">
         <div class="container">
             <div class="footer-container">
+                <!-- About Column -->
                 <div class="footer-column">
                     <div class="footer-logo">
                         <i class="fas fa-store logo-icon"></i>
                         <h2>Eagle Shack</h2>
                     </div>
-                    <p class="footer-description">Prosper High School's student-run store providing snacks, drinks, school supplies, merchandise, and event concessions at competitive prices.</p>
+                    <p class="footer-description">
+                        Prosper High School's student-run store providing snacks, drinks, school supplies, merchandise, and event concessions at competitive prices.
+                    </p>
                 </div>
                 
+                <!-- Quick Links Column -->
                 <div class="footer-column">
                     <h3 class="footer-title">Quick Links</h3>
                     <ul class="footer-links">
@@ -132,6 +109,7 @@
                     </ul>
                 </div>
                 
+                <!-- Contact Information Column -->
                 <div class="footer-column">
                     <h3 class="footer-title">Contact</h3>
                     <ul class="footer-links contact-links">
@@ -141,12 +119,15 @@
                     </ul>
                 </div>
             </div>
+            
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p>&copy; 2025 Eagle Shack - Prosper High School. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Authentication Script -->
     <script src="auth.js"></script>
 </body>
 </html>

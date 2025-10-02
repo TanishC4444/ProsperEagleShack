@@ -1,27 +1,35 @@
 /* =========== GENERAL STYLES =========== */
 :root {
-    /* Enhanced color palette */
-    --primary-color: #2e7d32; /* Green */
-    --primary-light: #60ad5e;
-    --primary-dark: #005005;
-    --secondary-color: #4caf50; /* Lighter green */
+    /* Define a consistent color palette using CSS variables */
+    --primary-color: #2e7d32; /* Main green color */
+    --primary-light: #60ad5e; /* Lighter green variant */
+    --primary-dark: #005005; /* Darker green variant */
+    --secondary-color: #4caf50; /* Secondary green */
     --secondary-light: #80e27e;
     --secondary-dark: #087f23;
     --accent-color: #ffc107; /* Yellow accent */
     --accent-light: #fff350;
     --accent-dark: #c79100;
-    --tertiary-color: #3f51b5; /* Indigo - new color */
+    --tertiary-color: #3f51b5; /* Indigo for tertiary actions */
     --tertiary-light: #757de8;
     --tertiary-dark: #002984;
+
+    /* Text colors for various purposes */
     --text-dark: #263238;
     --text-medium: #546e7a;
     --text-light: #f5f5f5;
     --text-muted: #757575;
+
+    /* Background colors */
     --background-light: #f9fafb;
     --background-white: #ffffff;
     --background-dark: #eceff1;
     --background-gradient: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
+
+    /* Border and utility colors */
     --border-color: #e0e0e0;
+
+    /* Semantic colors for alerts and status */
     --success-color: #4caf50;
     --success-light: #a5d6a7;
     --warning-color: #ff9800;
@@ -30,33 +38,35 @@
     --danger-light: #ffcdd2;
     --info-color: #2196f3;
     --info-light: #bbdefb;
-    
-    /* Enhanced shadows */
+
+    /* Shadows for depth and layering */
     --box-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --box-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
     --box-shadow-elevated: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --box-shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
-    
-    /* Enhanced transitions */
+
+    /* Standardized transition speeds */
     --transition-fast: all 0.2s ease;
     --transition: all 0.3s ease;
     --transition-slow: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
-    /* Borders */
+
+    /* Border radius for element roundness */
     --border-radius-sm: 4px;
     --border-radius: 8px;
     --border-radius-lg: 16px;
     --border-radius-full: 9999px;
 }
 
+/* Reset box model and spacing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body base styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -65,6 +75,7 @@ body {
     transition: var(--transition);
 }
 
+/* Container utility class for content width and padding */
 .container {
     width: 100%;
     max-width: 1200px;
@@ -72,6 +83,7 @@ body {
     padding: 0 20px;
 }
 
+/* Base anchor styles with hover transition */
 a {
     color: var(--primary-color);
     text-decoration: none;
@@ -79,10 +91,12 @@ a {
     position: relative;
 }
 
+/* Anchor hover state */
 a:hover {
     color: var(--primary-dark);
 }
 
+/* Underline effect for interactive links */
 a.underline-effect {
     position: relative;
 }
@@ -103,6 +117,7 @@ a.underline-effect:hover:after {
 }
 
 /* =========== BUTTONS =========== */
+/* Primary button styling (CTA, auth, submit) */
 .cta-button, .auth-button, .submit-btn {
     display: inline-flex;
     align-items: center;
@@ -123,6 +138,7 @@ a.underline-effect:hover:after {
     z-index: 1;
 }
 
+/* Button hover background animation overlay */
 .cta-button:before, .auth-button:before, .submit-btn:before {
     content: '';
     position: absolute;
@@ -139,8 +155,9 @@ a.underline-effect:hover:after {
     width: 100%;
 }
 
+/* Button hover and active interactions */
 .cta-button:hover, .auth-button:hover, .submit-btn:hover {
-    background-color: var(--primary-dark);
+    background-color: #f59e0b; /* Orange hover color */
     transform: translateY(-3px);
     box-shadow: var(--box-shadow-lg);
 }
@@ -150,6 +167,7 @@ a.underline-effect:hover:after {
     box-shadow: var(--box-shadow-sm);
 }
 
+/* Secondary (outline) button styles */
 .secondary-button, .cancel-btn {
     display: inline-flex;
     align-items: center;
@@ -170,6 +188,7 @@ a.underline-effect:hover:after {
     z-index: 1;
 }
 
+/* Hover overlay for secondary buttons */
 .secondary-button:before, .cancel-btn:before {
     content: '';
     position: absolute;
@@ -187,10 +206,13 @@ a.underline-effect:hover:after {
 }
 
 .secondary-button:hover, .cancel-btn:hover {
+    background-color: var(--primary-color); /* Green background on hover */
+    color: white; /* White text on hover */
     transform: translateY(-3px);
     box-shadow: var(--box-shadow);
 }
 
+/* Tertiary (indigo-themed) button styles */
 .tertiary-button {
     display: inline-flex;
     align-items: center;
@@ -212,7 +234,7 @@ a.underline-effect:hover:after {
     transform: translateY(-3px);
 }
 
-/* Button with vibrant gradient */
+/* Gradient-styled button with hover animation */
 .gradient-button {
     background-image: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     background-size: 200% 100%;
@@ -227,6 +249,7 @@ a.underline-effect:hover:after {
 }
 
 /* =========== NAVIGATION =========== */
+/* Navbar base styles */
 .navbar {
     background-color: var(--background-white);
     box-shadow: var(--box-shadow-sm);
@@ -237,6 +260,7 @@ a.underline-effect:hover:after {
     transition: all 0.4s ease;
 }
 
+/* Navbar when scrolled (compact and translucent) */
 .navbar.scrolled {
     padding: 10px 0;
     box-shadow: var(--box-shadow);
@@ -244,12 +268,14 @@ a.underline-effect:hover:after {
     backdrop-filter: blur(8px);
 }
 
+/* Layout inside navbar */
 .navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Logo styling in navbar */
 .nav-logo {
     display: flex;
     align-items: center;
@@ -274,6 +300,7 @@ a.underline-effect:hover:after {
     transition: var(--transition);
 }
 
+/* Navigation menu layout */
 .nav-menu {
     display: flex;
     list-style: none;
@@ -284,6 +311,7 @@ a.underline-effect:hover:after {
     position: relative;
 }
 
+/* Navigation links styling */
 .nav-link {
     color: var(--text-dark);
     font-weight: 500;
@@ -293,16 +321,19 @@ a.underline-effect:hover:after {
     position: relative;
 }
 
+/* Hover effect for nav links */
 .nav-link:hover {
     color: var(--primary-color);
     background-color: rgba(46, 125, 50, 0.1);
 }
 
+/* Active nav link styles */
 .nav-link.active {
     color: var(--primary-color);
     font-weight: 600;
 }
 
+/* Underline indicator for active nav link */
 .nav-link.active:after {
     content: '';
     position: absolute;
@@ -320,632 +351,725 @@ a.underline-effect:hover:after {
     width: 40px;
 }
 
+
+/* ========== ADMIN LOGIN BUTTON ======== */
+
+/* Styling for the login link in the navigation */
 .login-link {
-    color: var(--primary-color);
-    font-weight: 600;
-    position: relative;
-    padding: 8px 12px;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
+    color: var(--primary-color);  /* Uses theme primary color */
+    font-weight: 600;             /* Makes text semi-bold */
+    position: relative;           /* Used for positioning hover effects */
+    padding: 8px 12px;            /* Adds space inside button */
+    border-radius: var(--border-radius); /* Rounded corners from variable */
+    transition: var(--transition); /* Smooth transition effect */
 }
 
+/* Hover effect for login link */
 .login-link:hover {
-    background-color: rgba(46, 125, 50, 0.1);
+    background-color: rgba(46, 125, 50, 0.1); /* Light green background on hover */
 }
 
+/* ====== NAVIGATION COMPONENTS ========= */
+
+/* Mobile navigation toggle button - hidden on desktop */
 .nav-toggle {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-dark);
-    transition: var(--transition);
+    display: none;                /* Hidden by default, shown on mobile */
+    font-size: 1.5rem;            /* Larger icon size */
+    cursor: pointer;              /* Hand cursor on hover */
+    color: var(--text-dark);      /* Dark text color */
+    transition: var(--transition); /* Smooth animation */
 }
 
+/* Hover effect for the navigation toggle */
 .nav-toggle:hover {
-    color: var(--primary-color);
-    transform: rotate(90deg);
+    color: var(--primary-color);  /* Changes to primary color on hover */
+    transform: rotate(90deg);     /* Rotates the icon on hover */
 }
 
-/* Nav dropdown styles */
+/* Dropdown menu styling in navigation */
 .nav-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 200px;
-    background-color: var(--background-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 10px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    z-index: 100;
+    position: absolute;           /* Positioned relative to parent */
+    top: 100%;                    /* Places dropdown below parent */
+    left: 0;                      /* Aligns with left edge of parent */
+    width: 200px;                 /* Fixed width for dropdown */
+    background-color: var(--background-white); /* White background */
+    border-radius: var(--border-radius); /* Rounded corners */
+    box-shadow: var(--box-shadow); /* Shadow effect for depth */
+    padding: 10px 0;              /* Vertical padding only */
+    opacity: 0;                   /* Hidden by default */
+    visibility: hidden;           /* Hidden from screen readers too */
+    transform: translateY(10px);  /* Slight offset for animation */
+    transition: all 0.3s ease;    /* Smooth transition for all properties */
+    z-index: 100;                 /* Ensures dropdown appears above other content */
 }
 
+/* Show dropdown when hovering over parent menu item */
 .nav-item:hover .nav-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    opacity: 1;                   /* Makes dropdown visible */
+    visibility: visible;          /* Makes dropdown accessible */
+    transform: translateY(0);     /* Removes the offset */
 }
 
+/* Individual dropdown menu items */
 .dropdown-item {
-    display: block;
-    padding: 10px 15px;
-    color: var(--text-dark);
-    transition: var(--transition);
+    display: block;               /* Full width within dropdown */
+    padding: 10px 15px;           /* Padding for clickable area */
+    color: var(--text-dark);      /* Dark text color */
+    transition: var(--transition); /* Smooth transitions */
 }
 
+/* Hover effect for dropdown items */
 .dropdown-item:hover {
-    background-color: rgba(46, 125, 50, 0.1);
-    color: var(--primary-color);
-    padding-left: 20px;
+    background-color: rgba(46, 125, 50, 0.1); /* Light green background */
+    color: var(--primary-color);  /* Changes text to primary color */
+    padding-left: 20px;           /* Increases left padding for indent effect */
 }
 
-/* =========== HERO SECTION =========== */
+
+/* ============ HERO SECTION ============ */
+
+/* Main hero section container */
 .hero-section {
-    position: relative;
-    padding: 120px 0 80px;
-    background-color: var(--background-white);
-    overflow: hidden;
+    position: relative;           /* For positioning absolute elements */
+    padding: 120px 0 80px;        /* More padding on top than bottom */
+    background-color: var(--background-white); /* White background */
+    overflow: hidden;             /* Hides overflowing shape elements */
 }
 
+/* Container for decorative shapes */
 .hero-shapes {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    overflow: hidden;
+    position: absolute;           /* Positioned relative to hero */
+    width: 100%;                  /* Full width */
+    height: 100%;                 /* Full height */
+    top: 0;                       /* Aligned to top */
+    left: 0;                      /* Aligned to left */
+    z-index: 1;                   /* Above background, below content */
+    overflow: hidden;             /* Prevents shapes from causing scrollbars */
 }
 
+/* Base styles for all hero decorative shapes */
 .hero-shape {
-    position: absolute;
-    border-radius: 50%;
-    transition: var(--transition-slow);
+    position: absolute;           /* Positioned within the shapes container */
+    border-radius: 50%;           /* Makes shapes circular */
+    transition: var(--transition-slow); /* Slow animation for subtle effect */
 }
 
+/* First decorative shape - large green circle */
 .shape-1 {
-    width: 300px;
-    height: 300px;
-    background-color: rgba(76, 175, 80, 0.1);
-    top: -100px;
-    right: -100px;
-    animation: float 8s ease-in-out infinite;
+    width: 300px;                 /* Width dimension */
+    height: 300px;                /* Height dimension */
+    background-color: rgba(76, 175, 80, 0.1); /* Light green with opacity */
+    top: -100px;                  /* Positioned partly off-screen */
+    right: -100px;                /* Positioned partly off-screen */
+    animation: float 8s ease-in-out infinite; /* Floating animation */
 }
 
+/* Second decorative shape - medium green circle */
 .shape-2 {
-    width: 200px;
-    height: 200px;
-    background-color: rgba(76, 175, 80, 0.05);
-    bottom: -50px;
-    left: -50px;
-    animation: float 6s ease-in-out infinite reverse;
+    width: 200px;                 /* Width dimension */
+    height: 200px;                /* Height dimension */
+    background-color: rgba(76, 175, 80, 0.05); /* Lighter green with opacity */
+    bottom: -50px;                /* Positioned partly off-screen */
+    left: -50px;                  /* Positioned partly off-screen */
+    animation: float 6s ease-in-out infinite reverse; /* Reverse floating animation */
 }
 
+/* Third decorative shape - small yellow circle */
 .shape-3 {
-    width: 150px;
-    height: 150px;
-    background-color: rgba(255, 193, 7, 0.1);
-    top: 50%;
-    left: 10%;
-    animation: float 10s ease-in-out infinite;
+    width: 150px;                 /* Width dimension */
+    height: 150px;                /* Height dimension */
+    background-color: rgba(255, 193, 7, 0.1); /* Light yellow with opacity */
+    top: 50%;                     /* Positioned at middle height */
+    left: 10%;                    /* Positioned near left edge */
+    animation: float 10s ease-in-out infinite; /* Slower floating animation */
 }
 
+/* Keyframe animation for floating shapes */
 @keyframes float {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-    100% { transform: translateY(0) rotate(0deg); }
+    0% { transform: translateY(0) rotate(0deg); }     /* Start position */
+    50% { transform: translateY(-20px) rotate(5deg); } /* Middle position - up and slight rotation */
+    100% { transform: translateY(0) rotate(0deg); }   /* End position back to start */
 }
 
+/* Hero content container */
 .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    animation: fadeInUp 1s ease-out;
+    position: relative;           /* Establishes stacking context */
+    z-index: 2;                   /* Above the decorative shapes */
+    text-align: center;           /* Center-aligns text */
+    max-width: 800px;             /* Maximum width for readability */
+    margin: 0 auto;               /* Horizontal centering */
+    animation: fadeInUp 1s ease-out; /* Entrance animation */
 }
 
+/* Fade-in animation for hero content */
 @keyframes fadeInUp {
     from {
-        opacity: 0;
-        transform: translateY(20px);
+        opacity: 0;               /* Start invisible */
+        transform: translateY(20px); /* Start position below final */
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1;               /* End fully visible */
+        transform: translateY(0); /* End at natural position */
     }
 }
 
+/* Small badge-style label above hero title */
 .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background-color: rgba(76, 175, 80, 0.1);
-    color: var(--primary-color);
-    border-radius: 50px;
-    font-weight: 600;
-    margin-bottom: 24px;
-    transition: var(--transition);
+    display: inline-flex;         /* For aligning icon and text */
+    align-items: center;          /* Vertical centering */
+    gap: 8px;                     /* Space between icon and text */
+    padding: 8px 16px;            /* Horizontal padding > vertical */
+    background-color: rgba(76, 175, 80, 0.1); /* Light green background */
+    color: var(--primary-color);  /* Green text */
+    border-radius: 50px;          /* Pill shape */
+    font-weight: 600;             /* Semi-bold text */
+    margin-bottom: 24px;          /* Space below badge */
+    transition: var(--transition); /* Smooth transition for hover */
 }
 
+/* Hover effect for the badge */
 .hero-badge:hover {
-    background-color: rgba(76, 175, 80, 0.2);
-    transform: translateY(-2px);
+    background-color: rgba(76, 175, 80, 0.2); /* Slightly darker on hover */
+    transform: translateY(-2px);  /* Slight upward shift */
 }
 
+/* Main hero heading */
 .hero-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    color: var(--text-dark);
-    line-height: 1.2;
-    letter-spacing: -0.5px;
+    font-size: 3.5rem;            /* Very large text */
+    font-weight: 800;             /* Extra bold */
+    margin-bottom: 20px;          /* Space below title */
+    color: var(--text-dark);      /* Dark text color */
+    line-height: 1.2;             /* Tighter line height for headings */
+    letter-spacing: -0.5px;       /* Slightly tighter letter spacing */
 }
 
+/* Highlighted text within the hero title */
 .hero-title span {
-    color: var(--primary-color);
-    position: relative;
-    display: inline-block;
+    color: var(--primary-color);  /* Primary color text */
+    position: relative;           /* For positioning the underline */
+    display: inline-block;        /* Block behavior in an inline context */
 }
 
+/* Decorative underline for highlighted text */
 .hero-title span:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background-color: var(--accent-color);
-    z-index: -1;
-    opacity: 0.5;
+    content: '';                  /* Empty content for pseudo-element */
+    position: absolute;           /* Positioned relative to span */
+    bottom: 0;                    /* Aligned to bottom */
+    left: 0;                      /* Aligned to left */
+    width: 100%;                  /* Full width */
+    height: 6px;                  /* Underline thickness */
+    background-color: var(--accent-color); /* Accent color background */
+    z-index: -1;                  /* Positioned behind text */
+    opacity: 0.5;                 /* Semi-transparent */
 }
 
+/* Hero description paragraph */
 .hero-description {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1.25rem;           /* Larger text */
+    color: var(--text-muted);     /* Muted color for secondary text */
+    margin-bottom: 40px;          /* Space below description */
+    max-width: 700px;             /* Maximum width for readability */
+    margin-left: auto;            /* Auto margins for centering */
+    margin-right: auto;           /* Auto margins for centering */
 }
 
+/* Container for hero call-to-action buttons */
 .hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
+    display: flex;                /* Flexible layout */
+    justify-content: center;      /* Center buttons horizontally */
+    gap: 16px;                    /* Space between buttons */
+    flex-wrap: wrap;              /* Allow wrapping on small screens */
 }
 
-/* Animated scroll down indicator */
+/* Animated scroll indicator */
 .scroll-down {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: var(--transition);
-    z-index: 5;
+    position: absolute;           /* Absolute position within hero */
+    bottom: 20px;                 /* 20px from bottom */
+    left: 50%;                    /* Centered horizontally */
+    transform: translateX(-50%);  /* Offset by half width for true centering */
+    display: flex;                /* Flexible layout */
+    flex-direction: column;       /* Stack children vertically */
+    align-items: center;          /* Center children horizontally */
+    gap: 10px;                    /* Space between elements */
+    color: var(--text-muted);     /* Muted text color */
+    font-size: 0.875rem;          /* Smaller text */
+    cursor: pointer;              /* Hand cursor on hover */
+    transition: var(--transition); /* Smooth transition */
+    z-index: 5;                   /* Above decorative elements */
 }
 
+/* Hover effect for scroll indicator */
 .scroll-down:hover {
-    color: var(--primary-color);
+    color: var(--primary-color);  /* Change to primary color on hover */
 }
 
+/* Icon within scroll indicator */
 .scroll-down i {
-    font-size: 1.5rem;
-    animation: bounce 2s infinite;
+    font-size: 1.5rem;            /* Larger icon */
+    animation: bounce 2s infinite; /* Bouncing animation */
 }
 
+/* Keyframe animation for bounce effect */
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); } /* Starting position */
+    40% { transform: translateY(-10px); }                 /* Highest point */
+    60% { transform: translateY(-5px); }                  /* Secondary bounce */
 }
+
 
 /* =========== SECTION STYLES =========== */
+
+/* Base styles for all main sections */
 section {
-    padding: 80px 0;
-    position: relative;
+    padding: 80px 0;              /* Vertical padding */
+    position: relative;           /* For positioning absolute elements */
 }
 
+/* Header for each main section */
 .section-header {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
+    text-align: center;           /* Center alignment */
+    margin-bottom: 60px;          /* Space below header */
+    position: relative;           /* For positioning decorative elements */
 }
 
+/* Main title for each section */
 .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 16px;
-    position: relative;
-    display: inline-block;
+    font-size: 2.5rem;            /* Large text */
+    font-weight: 700;             /* Bold text */
+    color: var(--text-dark);      /* Dark text color */
+    margin-bottom: 16px;          /* Space below title */
+    position: relative;           /* For positioning underline */
+    display: inline-block;        /* Block behavior in inline context */
 }
 
+/* Decorative underline for section titles */
 .section-title:after {
-    content: '';
-    position: absolute;
-    width: 70px;
-    height: 4px;
-    background-color: var(--primary-color);
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
+    content: '';                  /* Empty content for pseudo-element */
+    position: absolute;           /* Positioned relative to title */
+    width: 70px;                  /* Width of underline */
+    height: 4px;                  /* Height of underline */
+    background-color: var(--primary-color); /* Primary color */
+    bottom: -10px;                /* Distance below text */
+    left: 50%;                    /* Center horizontally */
+    transform: translateX(-50%);  /* Offset for true centering */
+    border-radius: 2px;           /* Slightly rounded ends */
 }
 
+/* Description text for each section */
 .section-description {
-    font-size: 1.125rem;
-    color: var(--text-muted);
-    max-width: 800px;
-    margin: 0 auto;
+    font-size: 1.125rem;          /* Slightly larger text */
+    color: var(--text-muted);     /* Muted text color */
+    max-width: 800px;             /* Maximum width for readability */
+    margin: 0 auto;               /* Center horizontally */
 }
 
-/* Section background patterns */
+/* Background pattern overlay for sections */
 .bg-pattern {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.05;
-    pointer-events: none;
-    background-image: 
+    position: absolute;           /* Positioned within section */
+    width: 100%;                  /* Full width */
+    height: 100%;                 /* Full height */
+    top: 0;                       /* Aligned to top */
+    left: 0;                      /* Aligned to left */
+    opacity: 0.05;                /* Very subtle */
+    pointer-events: none;         /* Doesn't interfere with interactions */
+    background-image:             /* Two radial gradient patterns */
         radial-gradient(circle at 25% 25%, var(--primary-color) 2px, transparent 0),
         radial-gradient(circle at 75% 75%, var(--primary-color) 2px, transparent 0);
-    background-size: 50px 50px;
+    background-size: 50px 50px;   /* Size of the pattern repeat */
 }
 
-/* =========== ANNOUNCEMENTS SECTION =========== */
+/* ====== ANNOUNCEMENTS SECTION ========= */
+
+/* Container for the announcements section */
 .announcements-section {
-    background-color: var(--background-white);
-    padding: 60px 0;
+    background-color: var(--background-white); /* White background */
+    padding: 60px 0;              /* Vertical padding */
 }
 
+/* Grid layout for announcement cards */
 .announcements-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
+    display: grid;                /* Grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Responsive columns */
+    gap: 24px;                    /* Space between cards */
 }
 
+/* Individual announcement card */
 .announcement-card {
-    background-color: var(--background-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 24px;
-    transition: var(--transition);
-    border-left: 4px solid var(--primary-color);
-    position: relative;
-    overflow: hidden;
+    background-color: var(--background-white); /* White background */
+    border-radius: var(--border-radius); /* Rounded corners */
+    box-shadow: var(--box-shadow); /* Shadow for depth */
+    padding: 24px;                /* Inside spacing */
+    transition: var(--transition); /* Smooth animation */
+    border-left: 4px solid var(--primary-color); /* Left accent border */
+    position: relative;           /* For positioning pseudo-elements */
+    overflow: hidden;             /* Contains the pseudo-element animation */
 }
 
+/* Animated top border on announcement cards */
 .announcement-card:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(to right, var(--primary-color), var(--primary-light));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s ease;
+    content: '';                  /* Empty content for pseudo-element */
+    position: absolute;           /* Positioned within card */
+    top: 0;                       /* Aligned to top */
+    left: 0;                      /* Aligned to left */
+    width: 100%;                  /* Full width */
+    height: 4px;                  /* Border thickness */
+    background: linear-gradient(to right, var(--primary-color), var(--primary-light)); /* Gradient */
+    transform: scaleX(0);         /* Initially invisible (0 width) */
+    transform-origin: left;       /* Animation starts from left */
+    transition: transform 0.5s ease; /* Smooth animation */
 }
 
+/* Show top border on hover */
 .announcement-card:hover:before {
-    transform: scaleX(1);
+    transform: scaleX(1);         /* Expand to full width */
 }
 
+/* Lift effect on card hover */
 .announcement-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--box-shadow-lg);
+    transform: translateY(-5px);  /* Move up slightly */
+    box-shadow: var(--box-shadow-lg); /* Larger shadow */
 }
 
+/* Header section of announcement card */
 .announcement-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+    display: flex;                /* Flexible layout */
+    justify-content: space-between; /* Space items apart */
+    align-items: center;          /* Vertical centering */
+    margin-bottom: 16px;          /* Space below header */
 }
 
+/* Title of announcement */
 .announcement-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    transition: var(--transition);
+    font-size: 1.25rem;           /* Larger text */
+    font-weight: 600;             /* Semi-bold */
+    color: var(--text-dark);      /* Dark text color */
+    transition: var(--transition); /* Smooth color change */
 }
 
+/* Change title color on card hover */
 .announcement-card:hover .announcement-title {
-    color: var(--primary-color);
+    color: var(--primary-color);  /* Change to primary color */
 }
 
+/* Date display for announcement */
 .announcement-date {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 0.875rem;          /* Smaller text */
+    color: var(--text-muted);     /* Muted text color */
+    display: flex;                /* For icon alignment */
+    align-items: center;          /* Vertical centering */
+    gap: 5px;                     /* Space between icon and text */
 }
 
+/* Icon in the date display */
 .announcement-date i {
-    color: var(--primary-light);
+    color: var(--primary-light);  /* Light primary color */
 }
 
+/* Main content of announcement */
 .announcement-content {
-    color: var(--text-dark);
-    margin-bottom: 16px;
-    line-height: 1.6;
+    color: var(--text-dark);      /* Dark text color */
+    margin-bottom: 16px;          /* Space below content */
+    line-height: 1.6;             /* Increased line height for readability */
 }
 
+/* Badge/label for announcement priority */
 .announcement-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: var(--transition);
+    display: inline-block;        /* Inline block for proper sizing */
+    padding: 4px 12px;            /* Horizontal padding > vertical */
+    border-radius: 50px;          /* Pill shape */
+    font-size: 0.75rem;           /* Smaller text */
+    font-weight: 600;             /* Semi-bold */
+    text-transform: uppercase;    /* All caps */
+    transition: var(--transition); /* Smooth transition */
 }
 
+/* Normal priority badge */
 .announcement-badge.normal {
-    background-color: rgba(76, 175, 80, 0.1);
-    color: var(--primary-color);
+    background-color: rgba(76, 175, 80, 0.1); /* Light green background */
+    color: var(--primary-color);  /* Green text */
 }
 
+/* Hover effect for normal badge */
 .announcement-badge.normal:hover {
-    background-color: rgba(76, 175, 80, 0.2);
+    background-color: rgba(76, 175, 80, 0.2); /* Slightly darker on hover */
 }
 
+/* Important priority badge */
 .announcement-badge.important {
-    background-color: rgba(255, 152, 0, 0.1);
-    color: var(--warning-color);
+    background-color: rgba(255, 152, 0, 0.1); /* Light orange background */
+    color: var(--warning-color);  /* Orange text */
 }
 
+/* Hover effect for important badge */
 .announcement-badge.important:hover {
-    background-color: rgba(255, 152, 0, 0.2);
+    background-color: rgba(255, 152, 0, 0.2); /* Slightly darker on hover */
 }
 
+/* Urgent priority badge */
 .announcement-badge.urgent {
-    background-color: rgba(244, 67, 54, 0.1);
-    color: var(--danger-color);
+    background-color: rgba(244, 67, 54, 0.1); /* Light red background */
+    color: var(--danger-color);   /* Red text */
 }
 
+/* Hover effect for urgent badge */
 .announcement-badge.urgent:hover {
-    background-color: rgba(244, 67, 54, 0.2);
+    background-color: rgba(244, 67, 54, 0.2); /* Slightly darker on hover */
 }
 
+/* Placeholder when no announcements exist */
 .announcement-placeholder {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 40px;
-    background-color: var(--background-light);
-    border-radius: var(--border-radius);
-    color: var(--text-muted);
-    border: 2px dashed var(--border-color);
-    transition: var(--transition);
+    grid-column: 1 / -1;          /* Spans all columns */
+    text-align: center;           /* Center text */
+    padding: 40px;                /* Large padding */
+    background-color: var(--background-light); /* Light background */
+    border-radius: var(--border-radius); /* Rounded corners */
+    color: var(--text-muted);     /* Muted text */
+    border: 2px dashed var(--border-color); /* Dashed border */
+    transition: var(--transition); /* Smooth transition */
 }
 
+/* Hover effect for placeholder */
 .announcement-placeholder:hover {
-    border-color: var(--primary-light);
-    background-color: rgba(76, 175, 80, 0.05);
+    border-color: var(--primary-light); /* Change border color */
+    background-color: rgba(76, 175, 80, 0.05); /* Very light green background */
 }
 
-/* =========== HOW IT WORKS SECTION =========== */
+/* ======== HOW IT WORKS SECTION ======== */
+
+/* Container for the how it works section */
 .how-it-works-section {
-    background-color: var(--background-light);
-    position: relative;
-    overflow: hidden;
+    background-color: var(--background-light); /* Light background */
+    position: relative;           /* For positioning decorative elements */
+    overflow: hidden;             /* Prevents overflow */
 }
 
+/* Container for process steps */
 .steps-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-    position: relative;
-    z-index: 2;
+    display: grid;                /* Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 32px;                    /* Space between steps */
+    position: relative;           /* For z-index */
+    z-index: 2;                   /* Above decorative elements */
 }
 
+/* Individual step in the process */
 .step {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    background-color: var(--background-white);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
+    display: flex;                /* Flexible layout */
+    gap: 20px;                    /* Space between number and content */
+    align-items: flex-start;      /* Align to top */
+    background-color: var(--background-white); /* White background */
+    padding: 30px;                /* Inside spacing */
+    border-radius: var(--border-radius); /* Rounded corners */
+    box-shadow: var(--box-shadow); /* Shadow for depth */
+    transition: var(--transition); /* Smooth animation */
+    position: relative;           /* For positioning elements */
+    overflow: hidden;             /* Contains animations */
 }
 
+/* Hover effect for steps */
 .step:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--box-shadow-lg);
+    transform: translateY(-5px);  /* Move up slightly */
+    box-shadow: var(--box-shadow-lg); /* Larger shadow */
 }
 
+/* Animated bottom border on steps */
 .step:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s ease;
+    content: '';                  /* Empty content for pseudo-element */
+    position: absolute;           /* Positioned within step */
+    bottom: 0;                    /* Aligned to bottom */
+    left: 0;                      /* Aligned to left */
+    width: 100%;                  /* Full width */
+    height: 4px;                  /* Border thickness */
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color)); /* Gradient */
+    transform: scaleX(0);         /* Initially invisible (0 width) */
+    transform-origin: left;       /* Animation starts from left */
+    transition: transform 0.5s ease; /* Smooth animation */
 }
 
+/* Show bottom border on hover */
 .step:hover:after {
-    transform: scaleX(1);
+    transform: scaleX(1);         /* Expand to full width */
 }
 
+/* Circular number indicator for steps */
 .step-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: var(--text-light);
-    border-radius: 50%;
-    font-size: 1.5rem;
-    font-weight: 700;
-    flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
-    transition: var(--transition);
+    display: flex;                /* Flexible layout */
+    align-items: center;          /* Center vertically */
+    justify-content: center;      /* Center horizontally */
+    width: 50px;                  /* Circle width */
+    height: 50px;                 /* Circle height */
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); /* Gradient */
+    color: var(--text-light);     /* Light text color */
+    border-radius: 50%;           /* Circular shape */
+    font-size: 1.5rem;            /* Large number */
+    font-weight: 700;             /* Bold text */
+    flex-shrink: 0;               /* Prevents shrinking */
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3); /* Custom shadow */
+    transition: var(--transition); /* Smooth animation */
 }
 
+/* Hover effect for step number */
 .step:hover .step-number {
-    transform: scale(1.1) rotate(10deg);
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    transform: scale(1.1) rotate(10deg); /* Enlarge and rotate */
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); /* Different gradient */
 }
 
+/* Container for step text content */
 .step-content {
-    flex-grow: 1;
+    flex-grow: 1;                 /* Expand to fill space */
 }
 
+/* Step title */
 .step-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: var(--text-dark);
-    transition: var(--transition);
+    font-size: 1.25rem;           /* Larger text */
+    font-weight: 600;             /* Semi-bold */
+    margin-bottom: 12px;          /* Space below title */
+    color: var(--text-dark);      /* Dark text color */
+    transition: var(--transition); /* Smooth color change */
 }
 
+/* Change title color on step hover */
 .step:hover .step-title {
-    color: var(--primary-color);
+    color: var(--primary-color);  /* Change to primary color */
 }
 
+/* Step description text */
 .step-description {
-    color: var(--text-muted);
-    line-height: 1.6;
+    color: var(--text-muted);     /* Muted text color */
+    line-height: 1.6;             /* Increased line height for readability */
 }
 
-/* Connecting lines between steps (for desktop) */
+/* Connecting lines between steps (desktop only) */
 @media (min-width: 992px) {
     .steps-container {
-        position: relative;
+        position: relative;       /* For positioning the line */
     }
 
+    /* Horizontal connecting line */
     .steps-container:after {
-        content: '';
-        position: absolute;
-        top: 25px;
-        left: 25px;
-        width: calc(100% - 50px);
-        height: 3px;
-        background: linear-gradient(to right, var(--primary-light), var(--primary-dark));
-        z-index: -1;
-        opacity: 0.3;
+        content: '';              /* Empty content for pseudo-element */
+        position: absolute;       /* Positioned within container */
+        top: 25px;                /* Aligned with step numbers */
+        left: 25px;               /* Starting point */
+        width: calc(100% - 50px); /* Almost full width */
+        height: 3px;              /* Line thickness */
+        background: linear-gradient(to right, var(--primary-light), var(--primary-dark)); /* Gradient */
+        z-index: -1;              /* Behind the steps */
+        opacity: 0.3;             /* Subtle appearance */
     }
 }
 
-/* =========== CTA SECTION =========== */
+/* ============ CTA SECTION ============= */
+
+/* Call to action section */
 .cta-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: var(--text-light);
-    text-align: center;
-    padding: 60px 0;
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); /* Gradient background */
+    color: var(--text-light);     /* Light text color */
+    text-align: center;           /* Center alignment */
+    padding: 60px 0;              /* Vertical padding */
+    position: relative;           /* For positioning decorative elements */
+    overflow: hidden;             /* Contains decorative elements */
 }
 
+/* Decorative background overlay */
 .cta-section:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
+    content: '';                  /* Empty content for pseudo-element */
+    position: absolute;           /* Positioned within section */
+    top: 0;                       /* Aligned to top */
+    left: 0;                      /* Aligned to left */
+    width: 100%;                  /* Full width */
+    height: 100%;                 /* Full height */
+    background-image:             /* Radial gradient spots */
         radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0, transparent 100px),
         radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0, transparent 100px);
 }
 
+/* Container for CTA content */
 .cta-section .container {
-    position: relative;
-    z-index: 2;
+    position: relative;           /* For z-index */
+    z-index: 2;                   /* Above decorative elements */
 }
 
+/* CTA title */
 .cta-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    animation: fadeIn 0.5s ease-out;
+    font-size: 2.5rem;            /* Large text */
+    font-weight: 700;             /* Bold text */
+    margin-bottom: 16px;          /* Space below title */
+    animation: fadeIn 0.5s ease-out; /* Fade-in animation */
 }
 
+/* CTA description text */
 .cta-description {
-    font-size: 1.125rem;
-    margin-bottom: 32px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    opacity: 0.9;
-    animation: fadeIn 0.5s ease-out 0.2s both;
+    font-size: 1.125rem;          /* Slightly larger text */
+    margin-bottom: 32px;          /* Space below description */
+    max-width: 700px;             /* Maximum width for readability */
+    margin-left: auto;            /* Center horizontally */
+    margin-right: auto;           /* Center horizontally */
+    opacity: 0.9;                 /* Slightly transparent */
+    animation: fadeIn 0.5s ease-out 0.2s both; /* Delayed fade-in animation */
 }
 
+/* Container for CTA buttons */
 .cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    animation: fadeIn 0.5s ease-out 0.4s both;
+    display: flex;                /* Flexible layout */
+    justify-content: center;      /* Center horizontally */
+    gap: 16px;                    /* Space between buttons */
+    animation: fadeIn 0.5s ease-out 0.4s both; /* More delayed fade-in */
 }
 
+/* Primary CTA button */
 .cta-section .cta-button {
-    background-color: var(--text-light);
-    color: var(--primary-color);
-    transition: var(--transition-bounce);
+    background-color: var(--text-light); /* White background */
+    color: var(--primary-color);  /* Green text */
+    transition: var(--transition-bounce); /* Bouncy animation */
 }
 
+/* Hover effect for primary CTA button */
 .cta-section .cta-button:hover {
-    background-color: var(--accent-color);
-    color: var(--text-dark);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: var(--accent-color); /* Accent color background */
+    color: var(--text-dark);      /* Dark text */
+    transform: translateY(-5px);  /* Move up */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Strong shadow */
 }
 
+/* Secondary CTA button */
 .cta-section .secondary-button {
-    color: var(--text-light);
-    border-color: var(--text-light);
-    transition: var(--transition-bounce);
+    color: var(--text-light);     /* Light text */
+    border-color: var(--text-light); /* Light border */
+    transition: var(--transition-bounce); /* Bouncy animation */
 }
 
+/* Hover effect for secondary CTA button */
 .cta-section .secondary-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    transform: translateY(-5px);  /* Move up */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
+/* Keyframe animation for fade-in effect */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/* =========== FOOTER =========== */
-.footer {
-    background-color: var(--text-dark);
-    color: var(--text-light);
-    padding: 80px 0 20px;
+    from { opacity: 0; transform: translateY(20px); } /* Start invisible and offset */
+    to { opacity: 1; transform: translateY(0); }      /* End visible and in position */
 }
 
+/* =========== FOOTER =========== */
+
+/* Overall footer styling */
+.footer {
+    background-color: var(--text-dark); /* Dark background */
+    color: var(--text-light); /* Light text */
+    padding: 80px 0 20px; /* Top, bottom spacing */
+}
+
+/* Footer layout using grid */
 .footer-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
     gap: 40px;
     margin-bottom: 40px;
 }
 
+/* Logo section in the footer */
 .footer-logo {
     display: flex;
     align-items: center;
@@ -953,19 +1077,23 @@ section {
     margin-bottom: 20px;
 }
 
+/* Logo icon color */
 .footer-logo .logo-icon {
     color: var(--accent-color);
 }
 
+/* Footer logo text styling */
 .footer-logo h2 {
     font-weight: 700;
 }
 
+/* Description text under logo */
 .footer-description {
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 24px;
 }
 
+/* Section titles in footer */
 .footer-title {
     font-size: 1.125rem;
     font-weight: 600;
@@ -974,6 +1102,7 @@ section {
     padding-bottom: 12px;
 }
 
+/* Underline effect for section titles */
 .footer-title::after {
     content: '';
     position: absolute;
@@ -984,33 +1113,36 @@ section {
     background-color: var(--accent-color);
 }
 
+/* Links list style reset */
 .footer-links {
     list-style: none;
 }
 
+/* Spacing for each list item */
 .footer-links li {
     margin-bottom: 12px;
 }
 
+/* Link style and hover effect */
 .footer-links a {
     color: rgba(255, 255, 255, 0.7);
     transition: var(--transition);
 }
-
 .footer-links a:hover {
     color: var(--text-light);
 }
 
+/* Contact links with icons */
 .contact-links li {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
 .contact-links i {
     color: var(--accent-color);
 }
 
+/* Bottom strip of footer */
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
@@ -1020,6 +1152,8 @@ section {
 }
 
 /* =========== BACK TO TOP BUTTON =========== */
+
+/* Hidden by default, shown with .visible */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -1040,22 +1174,27 @@ section {
     z-index: 99;
 }
 
+/* Show the button when scrolled down */
 .back-to-top.visible {
     opacity: 1;
     visibility: visible;
 }
 
+/* Hover effect */
 .back-to-top:hover {
     background-color: var(--primary-dark);
     transform: translateY(-5px);
 }
 
 /* =========== LOGIN SECTION =========== */
+
+/* Outer section for login */
 .login-section {
     padding: 80px 0;
     background-color: var(--background-light);
 }
 
+/* Flex container for centering auth box */
 .auth-container {
     display: flex;
     justify-content: center;
@@ -1063,6 +1202,7 @@ section {
     min-height: 60vh;
 }
 
+/* Login box styling */
 .auth-box {
     background-color: var(--background-white);
     border-radius: 8px;
@@ -1072,11 +1212,11 @@ section {
     padding: 40px;
 }
 
+/* Login heading and text */
 .auth-header {
     text-align: center;
     margin-bottom: 32px;
 }
-
 .auth-header h2 {
     font-size: 1.8rem;
     font-weight: 700;
@@ -1087,11 +1227,11 @@ section {
     justify-content: center;
     gap: 10px;
 }
-
 .auth-header p {
     color: var(--text-muted);
 }
 
+/* Login form styles */
 .auth-form .form-group {
     margin-bottom: 24px;
 }
@@ -1103,6 +1243,7 @@ section {
     color: var(--text-dark);
 }
 
+/* Input fields */
 .auth-form input {
     width: 100%;
     padding: 12px 16px;
@@ -1118,6 +1259,7 @@ section {
     box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
 }
 
+/* Options under form like remember me and forgot password */
 .auth-options {
     display: flex;
     justify-content: space-between;
@@ -1135,10 +1277,12 @@ section {
     color: var(--primary-color);
 }
 
+/* Submit button */
 .auth-button {
     width: 100%;
 }
 
+/* Success and error messages */
 .auth-message {
     margin-top: 16px;
     padding: 12px;
@@ -1161,12 +1305,15 @@ section {
 }
 
 /* =========== ADMIN DASHBOARD =========== */
+
+/* Dashboard header banner */
 .admin-header {
     background-color: var(--primary-color);
     color: var(--text-light);
     padding: 40px 0;
 }
 
+/* Welcome message on dashboard */
 .admin-welcome h1 {
     display: flex;
     align-items: center;
@@ -1174,12 +1321,12 @@ section {
     font-size: 2rem;
     margin-bottom: 16px;
 }
-
 .admin-welcome p {
     font-size: 1.125rem;
     opacity: 0.9;
 }
 
+/* Tabbed navigation */
 .dashboard-tabs {
     display: flex;
     gap: 16px;
@@ -1188,6 +1335,7 @@ section {
     padding-bottom: 16px;
 }
 
+/* Individual tab button */
 .tab-btn {
     display: flex;
     align-items: center;
@@ -1213,15 +1361,16 @@ section {
     background-color: rgba(46, 125, 50, 0.1);
 }
 
+/* Tab content visibility */
 .tab-content {
     display: none;
 }
-
 .tab-content.active {
     display: block;
     animation: fadeIn 0.3s ease;
 }
 
+/* Animation for tab content */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -1233,6 +1382,7 @@ section {
     }
 }
 
+/* Header for admin sections (e.g. product, user lists) */
 .admin-section-header {
     display: flex;
     justify-content: space-between;
@@ -1240,6 +1390,7 @@ section {
     margin-bottom: 24px;
 }
 
+/* Button to add new item */
 .add-btn {
     display: flex;
     align-items: center;
@@ -1259,6 +1410,7 @@ section {
     transform: translateY(-2px);
 }
 
+/* Form used in admin for adding/editing items */
 .admin-form {
     background-color: var(--background-white);
     border-radius: 8px;
@@ -1277,6 +1429,7 @@ section {
     margin-bottom: 20px;
 }
 
+/* Labels and inputs for admin forms */
 .admin-form label {
     display: block;
     margin-bottom: 8px;
@@ -1307,6 +1460,7 @@ section {
     min-height: 120px;
 }
 
+/* Helper text */
 .admin-form small {
     display: block;
     margin-top: 8px;
@@ -1314,24 +1468,28 @@ section {
     color: var(--text-muted);
 }
 
+/* Row layout for multiple inputs */
 .form-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
 }
 
+/* Actions at bottom of form */
 .form-actions {
     display: flex;
     gap: 16px;
     margin-top: 24px;
 }
 
+/* List layout for admin items */
 .admin-items-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
 }
 
+/* Individual admin item */
 .admin-item {
     background-color: var(--background-white);
     border-radius: 8px;
@@ -1340,6 +1498,7 @@ section {
     position: relative;
 }
 
+/* Admin item header (title and actions) */
 .admin-item-header {
     display: flex;
     justify-content: space-between;
@@ -1347,6 +1506,7 @@ section {
     margin-bottom: 16px;
 }
 
+/* Admin item title */
 .admin-item-title {
     font-size: 1.25rem;
     font-weight: 600;
@@ -1354,6 +1514,7 @@ section {
     margin-bottom: 8px;
 }
 
+/* Metadata below title */
 .admin-item-meta {
     display: flex;
     align-items: center;
@@ -1369,16 +1530,21 @@ section {
     gap: 6px;
 }
 
+/* Description or body content */
 .admin-item-content {
     color: var(--text-dark);
     margin-bottom: 16px;
 }
 
+/* Buttons for editing/deleting */
 .admin-item-actions {
     display: flex;
     gap: 8px;
 }
 
+
+/* ====== BUTTONS ====== */
+/* Base styles for action buttons (e.g., edit/delete) */
 .item-action-btn {
     padding: 6px 12px;
     border-radius: 4px;
@@ -1390,26 +1556,31 @@ section {
     transition: var(--transition);
 }
 
+/* Edit button styling: green-themed */
 .edit-btn {
     background-color: rgba(46, 125, 50, 0.1);
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
 }
 
+/* Edit button hover effect: darken background */
 .edit-btn:hover {
     background-color: rgba(46, 125, 50, 0.2);
 }
 
+/* Delete button styling: red-themed */
 .delete-btn {
     background-color: rgba(244, 67, 54, 0.1);
     color: var(--danger-color);
     border: 1px solid var(--danger-color);
 }
 
+/* Delete button hover effect: darken background */
 .delete-btn:hover {
     background-color: rgba(244, 67, 54, 0.2);
 }
 
+/* Message box shown when admin list is empty or needs to display a notice */
 .admin-list-message {
     text-align: center;
     padding: 30px;
@@ -1418,17 +1589,23 @@ section {
     color: var(--text-muted);
 }
 
-/* =========== VOLUNTEER SECTION =========== */
+/* =============================== */
+/* ===== VOLUNTEER SECTION ====== */
+/* =============================== */
+
+/* Background for the volunteer section */
 .volunteer-section {
     background-color: var(--background-light);
 }
 
+/* Grid layout for opportunity cards */
 .opportunities-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 24px;
 }
 
+/* Styling for each volunteer/internship/event card */
 .opportunity-card {
     background-color: var(--background-white);
     border-radius: 8px;
@@ -1438,11 +1615,13 @@ section {
     border-top: 4px solid var(--primary-color);
 }
 
+/* Card hover effect */
 .opportunity-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Tag/badge styles for opportunity types */
 .opportunity-type {
     display: inline-block;
     padding: 4px 12px;
@@ -1453,21 +1632,25 @@ section {
     margin-bottom: 16px;
 }
 
+/* Volunteer tag styling */
 .opportunity-type.volunteer {
     background-color: rgba(76, 175, 80, 0.1);
     color: var(--primary-color);
 }
 
+/* Internship tag styling */
 .opportunity-type.internship {
     background-color: rgba(33, 150, 243, 0.1);
     color: #2196f3;
 }
 
+/* Event tag styling */
 .opportunity-type.event {
     background-color: rgba(156, 39, 176, 0.1);
     color: #9c27b0;
 }
 
+/* Title of the opportunity */
 .opportunity-title {
     font-size: 1.25rem;
     font-weight: 600;
@@ -1475,10 +1658,12 @@ section {
     margin-bottom: 12px;
 }
 
+/* Container for opportunity details */
 .opportunity-details {
     margin-bottom: 16px;
 }
 
+/* Individual detail row (icon + text) */
 .opportunity-detail {
     display: flex;
     align-items: center;
@@ -1488,21 +1673,25 @@ section {
     font-size: 0.875rem;
 }
 
+/* Icon color in detail rows */
 .opportunity-detail i {
     color: var(--primary-color);
 }
 
+/* Description text for opportunity */
 .opportunity-description {
     color: var(--text-dark);
     margin-bottom: 24px;
 }
 
+/* Footer section: usually contains availability or call to action */
 .opportunity-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Slot availability (e.g., number of open positions) */
 .opportunity-slots {
     display: flex;
     align-items: center;
@@ -1511,18 +1700,24 @@ section {
     font-size: 0.875rem;
 }
 
-/* =========== MEDIA QUERIES =========== */
+/* ======================== */
+/* ===== MEDIA QUERIES ==== */
+/* ======================== */
+
+/* Medium screen tweaks (tablets) */
 @media (max-width: 992px) {
     .steps-container {
         grid-template-columns: 1fr;
     }
-    
+
     .footer-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* Small screen tweaks (phones) */
 @media (max-width: 768px) {
+    /* Slide-in nav menu for mobile */
     .nav-menu {
         position: fixed;
         top: 0;
@@ -1536,32 +1731,29 @@ section {
         transition: var(--transition);
         z-index: 99;
     }
-    
+
     .nav-menu.active {
         right: 0;
     }
-    
+
     .nav-toggle {
         display: block;
         z-index: 100;
     }
-    
+
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     .section-title {
         font-size: 2rem;
     }
-    
-    .announcements-container {
-        grid-template-columns: 1fr;
-    }
-    
+
+    .announcements-container,
     .opportunities-container {
         grid-template-columns: 1fr;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
         width: 100%;
@@ -1570,33 +1762,36 @@ section {
     }
 }
 
+/* Extra small screen tweaks */
 @media (max-width: 576px) {
     .footer-container {
         grid-template-columns: 1fr;
     }
-    
+
     .hero-title {
         font-size: 2rem;
     }
-    
+
     .section-title {
         font-size: 1.8rem;
     }
-    
+
     .cta-title {
         font-size: 2rem;
     }
-    
+
     .auth-box {
         padding: 30px 20px;
     }
-    
+
     .tab-btn {
         font-size: 0.875rem;
         padding: 10px 16px;
     }
 }
 
+
+/* ===== GOOGLE FORM STYLES === */
 .google-form-container {
     width: 100%;
     max-width: 800px;
@@ -1607,6 +1802,7 @@ section {
     overflow: hidden;
 }
 
+/* Embedded form iframe styles */
 .google-form-container iframe {
     display: block;
     margin: 0 auto;
@@ -1614,31 +1810,32 @@ section {
     height: 600px;
 }
 
+/* Make form taller on mobile for better UX */
 @media (max-width: 768px) {
     .google-form-container iframe {
-        height: 1000px; /* Increase height on mobile for better scrolling */
+        height: 1000px;
     }
 }
-
+/* =========== PRODUCT CATEGORIES SECTION =========== */
 .product-categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
+    display: grid; /* Uses grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive column layout */
+    gap: 24px; /* Spacing between grid items */
     margin-top: 40px;
 }
 
 .product-category {
-    background-color: var(--background-white);
-    border-radius: 8px;
-    box-shadow: var(--box-shadow);
+    background-color: var(--background-white); /* Light background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: var(--box-shadow); /* Drop shadow */
     padding: 24px;
     text-align: center;
-    transition: var(--transition);
+    transition: var(--transition); /* Smooth hover transition */
 }
 
 .product-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); /* Slight upward movement on hover */
+    box-shadow: 0 8px 15px rgba(255, 248, 107, 0.1); /* Stronger hover shadow */
 }
 
 .category-icon {
@@ -1647,13 +1844,14 @@ section {
     justify-content: center;
     width: 70px;
     height: 70px;
-    background-color: rgba(76, 175, 80, 0.1);
+    background-color: rgba(76, 175, 80, 0.1); /* Soft green tint */
     color: var(--primary-color);
-    border-radius: 50%;
+    border-radius: 50%; /* Circular icon */
     font-size: 1.8rem;
     margin: 0 auto 20px;
 }
 
+/* =========== PRICING TABLES SECTION =========== */
 .pricing-tables {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1674,7 +1872,7 @@ section {
 }
 
 .pricing-header {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Bold header */
     color: var(--text-light);
     padding: 24px;
     text-align: center;
@@ -1699,15 +1897,16 @@ section {
 
 .pricing-feature {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Aligns text and value */
     padding: 12px 0;
     border-bottom: 1px solid var(--border-color);
 }
 
 .pricing-feature:last-child {
-    border-bottom: none;
+    border-bottom: none; /* Removes border from last item */
 }
 
+/* =========== SERVICES SECTION =========== */
 .services-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1747,9 +1946,10 @@ section {
     margin-bottom: 16px;
 }
 
+/* =========== ABOUT SECTION =========== */
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Two-column layout */
     gap: 40px;
     align-items: center;
 }
@@ -1795,6 +1995,7 @@ section {
     margin-bottom: 8px;
 }
 
+/* Responsive layout for small screens */
 @media (max-width: 768px) {
     .about-content {
         grid-template-columns: 1fr;
@@ -1904,7 +2105,7 @@ section {
     .requirements-list {
         padding: 24px 20px;
     }
-    
+
     .requirement-item {
         padding: 12px 0;
     }
@@ -1963,18 +2164,19 @@ section {
 
 .faq-answer {
     padding: 0 24px;
-    max-height: 0;
+    max-height: 0; /* Hidden by default */
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
 }
 
+/* Show answer when active */
 .faq-item.active .faq-answer {
     padding: 0 24px 20px;
     max-height: 1000px;
 }
 
 .faq-item.active .faq-toggle {
-    transform: rotate(45deg);
+    transform: rotate(45deg); /* Turns plus to 'x' */
 }
 
 /* =========== CONTACT SECTION =========== */
@@ -2022,16 +2224,37 @@ section {
 
 .contact-item p {
     margin: 0;
-    color: var(--text-dark);
-    font-size: 1.05rem;
+}
+.announcement-card {
+    height: 250px; /* Set fixed height */
+    display: flex;
+    flex-direction: column;
 }
 
-@media (max-width: 768px) {
-    .contact-info {
-        padding: 24px 20px;
-    }
-    
-    .contact-item {
-        padding: 12px 0;
-    }
+.announcement-content {
+    white-space: normal;  /* Allow text to wrap */
+    word-wrap: break-word;  /* Break long words if needed */
+    overflow-wrap: break-word;  /* Modern way to break words */
+    overflow-y: auto;  /* Vertical scroll when content is too tall */
+    max-height: 150px;  /* Set maximum height before scrolling */
+    line-height: 1.6;  /* Better spacing between lines */
+}
+
+/* Optional: Style the scrollbar */
+.announcement-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.announcement-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.announcement-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.announcement-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

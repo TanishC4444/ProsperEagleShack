@@ -8,7 +8,7 @@ const logoutBtn = document.getElementById('logout-btn');
 const announcementsList = document.getElementById('admin-announcements-list');
 const addAnnouncementBtn = document.getElementById('add-announcement-btn');
 const announcementForm = document.getElementById('announcement-form');
-const announcementEditor = document.getElementById('announcement-editor');
+const announcementEditor = document.getElementById('announcement-editor');  // This is the actual form element
 const cancelAnnouncementBtn = document.getElementById('cancel-announcement-btn');
 const announcementFormTitle = document.getElementById('announcement-form-title');
 
@@ -16,7 +16,7 @@ const announcementFormTitle = document.getElementById('announcement-form-title')
 const opportunitiesList = document.getElementById('admin-opportunities-list');
 const addOpportunityBtn = document.getElementById('add-opportunity-btn');
 const opportunityForm = document.getElementById('opportunity-form');
-const opportunityEditor = document.getElementById('opportunity-editor');
+const opportunityEditor = document.getElementById('opportunity-editor');  // This is the actual form element
 const cancelOpportunityBtn = document.getElementById('cancel-opportunity-btn');
 const opportunityFormTitle = document.getElementById('opportunity-form-title');
 
@@ -108,6 +108,25 @@ document.addEventListener('DOMContentLoaded', () => {
     initLogout();
 });
 
+// Listen for localStorage changes from other tabs
+window.addEventListener('storage', function(e) {
+    if (e.key === 'eagleShackAnnouncements') {
+        announcements = JSON.parse(e.newValue || '[]');
+        loadAnnouncements();
+    }
+    if (e.key === 'eagleShackOpportunities') {
+        opportunities = JSON.parse(e.newValue || '[]');
+        loadOpportunities();
+    }
+});
+
+/**
+ * initAdminDashboard
+ * Purpose: Initialize the admin dashboard with tab switching and form event handlers
+ * Input: N/A
+ * Output: return: None, environment changes: Sets up event listeners for tab buttons and form controls
+ * Error handling: N/A
+ */
 // Initialize admin dashboard functionality
 function initAdminDashboard() {
     // Tab switching
@@ -142,6 +161,7 @@ function initAdminDashboard() {
         });
     }
     
+    // FIX: Use announcementEditor instead of announcementForm for the submit event
     if (announcementEditor) {
         announcementEditor.addEventListener('submit', handleAnnouncementSubmit);
     }
@@ -159,11 +179,19 @@ function initAdminDashboard() {
         });
     }
     
+    // FIX: Use opportunityEditor instead of opportunityForm for the submit event
     if (opportunityEditor) {
         opportunityEditor.addEventListener('submit', handleOpportunitySubmit);
     }
 }
 
+/**
+ * loadAdminInfo
+ * Purpose: Load admin information from local/session storage and display username
+ * Input: N/A
+ * Output: return: None, environment changes: Updates adminName text content
+ * Error handling: Default to 'Administrator' if no auth data exists
+ */
 // Load admin information
 function loadAdminInfo() {
     const authData = JSON.parse(localStorage.getItem('eagleShackAuth') || sessionStorage.getItem('eagleShackAuth') || '{"username": "Administrator"}');
@@ -173,6 +201,13 @@ function loadAdminInfo() {
     }
 }
 
+/**
+ * initLogout
+ * Purpose: Initialize logout functionality
+ * Input: N/A
+ * Output: return: None, environment changes: Sets up click event for logout button
+ * Error handling: N/A
+ */
 // Initialize logout functionality
 function initLogout() {
     if (logoutBtn) {
@@ -191,6 +226,13 @@ function initLogout() {
 
 // =========== ANNOUNCEMENTS MANAGEMENT ===========
 
+/**
+ * loadAnnouncements
+ * Purpose: Load and display announcements in the admin interface
+ * Input: N/A
+ * Output: return: None, environment changes: Populates the announcementsList with announcement items
+ * Error handling: Returns early if list element doesn't exist, shows message if no announcements
+ */
 // Load announcements into the admin list
 function loadAnnouncements() {
     if (!announcementsList) return;
@@ -258,6 +300,13 @@ function loadAnnouncements() {
     });
 }
 
+/**
+ * showAnnouncementForm
+ * Purpose: Display the announcement form in add or edit mode
+ * Input: mode (string), announcementData (object, optional)
+ * Output: return: None, environment changes: Updates form title and fields, displays the form
+ * Error handling: Returns early if form elements don't exist
+ */
 // Show the announcement form (add or edit mode)
 function showAnnouncementForm(mode, announcementData = null) {
     if (!announcementForm || !announcementFormTitle) return;
@@ -265,9 +314,10 @@ function showAnnouncementForm(mode, announcementData = null) {
     // Set form title based on mode
     announcementFormTitle.textContent = mode === 'add' ? 'Add New Announcement' : 'Edit Announcement';
     
-    // Clear form
-    announcementEditor.re
-    set();
+    // FIX: Use announcementEditor (the form) to reset instead of announcementForm (the container)
+    if (announcementEditor) {
+        announcementEditor.reset();
+    }
     
     // If editing, fill the form with announcement data
     if (mode === 'edit' && announcementData) {
@@ -290,12 +340,26 @@ function showAnnouncementForm(mode, announcementData = null) {
     announcementForm.scrollIntoView({ behavior: 'smooth' });
 }
 
+/**
+ * hideAnnouncementForm
+ * Purpose: Hide the announcement form
+ * Input: N/A
+ * Output: return: None, environment changes: Sets form display to 'none'
+ * Error handling: Returns early if form element doesn't exist
+ */
 // Hide the announcement form
 function hideAnnouncementForm() {
     if (!announcementForm) return;
     announcementForm.style.display = 'none';
 }
 
+/**
+ * editAnnouncement
+ * Purpose: Prepare the form for editing an existing announcement
+ * Input: id (number)
+ * Output: return: None, environment changes: Calls showAnnouncementForm with edit mode
+ * Error handling: Only proceeds if announcement with given id exists
+ */
 // Edit an announcement
 function editAnnouncement(id) {
     const announcement = announcements.find(a => a.id === id);
@@ -304,6 +368,13 @@ function editAnnouncement(id) {
     }
 }
 
+/**
+ * deleteAnnouncement
+ * Purpose: Delete an announcement after confirmation
+ * Input: id (number)
+ * Output: return: None, environment changes: Removes announcement from array and updates localStorage
+ * Error handling: Confirms deletion with user before proceeding
+ */
 // Delete an announcement
 function deleteAnnouncement(id) {
     if (confirm('Are you sure you want to delete this announcement?')) {
@@ -313,6 +384,13 @@ function deleteAnnouncement(id) {
     }
 }
 
+/**
+ * handleAnnouncementSubmit
+ * Purpose: Process announcement form submission for create or update
+ * Input: e (event object)
+ * Output: return: None, environment changes: Updates announcements array and localStorage
+ * Error handling: Validates required fields, prevents default form submission
+ */
 // Handle announcement form submission
 function handleAnnouncementSubmit(e) {
     e.preventDefault();
@@ -355,6 +433,8 @@ function handleAnnouncementSubmit(e) {
             priority
         });
     }
+    
+    // Update localStorage to save changes
     localStorage.setItem('eagleShackAnnouncements', JSON.stringify(announcements));
 
     // Hide form and refresh list
@@ -364,6 +444,13 @@ function handleAnnouncementSubmit(e) {
 
 // =========== OPPORTUNITIES MANAGEMENT ===========
 
+/**
+ * loadOpportunities
+ * Purpose: Load and display volunteer opportunities in the admin interface
+ * Input: N/A
+ * Output: return: None, environment changes: Populates the opportunitiesList with opportunity items
+ * Error handling: Returns early if list element doesn't exist, shows message if no opportunities
+ */
 // Load opportunities into the admin list
 function loadOpportunities() {
     if (!opportunitiesList) return;
@@ -437,6 +524,13 @@ function loadOpportunities() {
     });
 }
 
+/**
+ * showOpportunityForm
+ * Purpose: Display the opportunity form in add or edit mode
+ * Input: mode (string), opportunityData (object, optional)
+ * Output: return: None, environment changes: Updates form title and fields, displays the form
+ * Error handling: Returns early if form elements don't exist
+ */
 // Show the opportunity form (add or edit mode)
 function showOpportunityForm(mode, opportunityData = null) {
     if (!opportunityForm || !opportunityFormTitle) return;
@@ -444,8 +538,10 @@ function showOpportunityForm(mode, opportunityData = null) {
     // Set form title based on mode
     opportunityFormTitle.textContent = mode === 'add' ? 'Add New Volunteer Opportunity' : 'Edit Volunteer Opportunity';
     
-    // Clear form
-    opportunityEditor.reset();
+    // FIX: Use opportunityEditor (the form) to reset instead of opportunityForm (the container)
+    if (opportunityEditor) {
+        opportunityEditor.reset();
+    }
     
     // If editing, fill the form with opportunity data
     if (mode === 'edit' && opportunityData) {
@@ -472,12 +568,26 @@ function showOpportunityForm(mode, opportunityData = null) {
     opportunityForm.scrollIntoView({ behavior: 'smooth' });
 }
 
+/**
+ * hideOpportunityForm
+ * Purpose: Hide the opportunity form
+ * Input: None
+ * Output: return: None, environment changes: Sets form display to 'none'
+ * Error handling: Returns early if form element doesn't exist
+ */
 // Hide the opportunity form
 function hideOpportunityForm() {
     if (!opportunityForm) return;
     opportunityForm.style.display = 'none';
 }
 
+/**
+ * editOpportunity
+ * Purpose: Prepare the form for editing an existing opportunity
+ * Input: id (number)
+ * Output: return: None, environment changes: Calls showOpportunityForm with edit mode
+ * Error handling: Only proceeds if opportunity with given id exists
+ */
 // Edit an opportunity
 function editOpportunity(id) {
     const opportunity = opportunities.find(o => o.id === id);
@@ -486,6 +596,13 @@ function editOpportunity(id) {
     }
 }
 
+/**
+ * deleteOpportunity
+ * Purpose: Delete an opportunity after confirmation
+ * Input: id (number)
+ * Output: return: None, environment changes: Removes opportunity from array and updates localStorage
+ * Error handling: Confirms deletion with user before proceeding
+ */
 // Delete an opportunity
 function deleteOpportunity(id) {
     if (confirm('Are you sure you want to delete this volunteer opportunity?')) {
@@ -495,10 +612,13 @@ function deleteOpportunity(id) {
     }
 }
 
-localStorage.setItem('eagleShackOpportunities', JSON.stringify(opportunities));
-    hideOpportunityForm();
-    loadOpportunities();
-
+/**
+ * handleOpportunitySubmit
+ * Purpose: Process opportunity form submission for create or update
+ * Input: e (event object)
+ * Output: return: None, environment changes: Updates opportunities array and localStorage
+ * Error handling: Validates required fields, prevents default form submission
+ */
 // Handle opportunity form submission
 function handleOpportunitySubmit(e) {
     e.preventDefault();
@@ -554,11 +674,21 @@ function handleOpportunitySubmit(e) {
         });
     }
     
+    // Update localStorage to save changes
+    localStorage.setItem('eagleShackOpportunities', JSON.stringify(opportunities));
+    
     // Hide form and refresh list
     hideOpportunityForm();
     loadOpportunities();
 }
 
+/**
+ * formatDate
+ * Purpose: Format a date string into a readable format
+ * Input: dateString (string)
+ * Output: return: Formatted date string, environment changes: None
+ * Error handling: None
+ */
 // Helper function for formatting dates
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
