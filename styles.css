@@ -2490,3 +2490,12 @@ section {
         font-size: 0.875rem;
     }
 }
+.service-features {
+    list-style: none;
+    padding-left: 0;
+}
+
+.service-features li {
+    padding-left: 0;
+    margin-bottom: 10px;
+}
