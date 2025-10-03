@@ -2258,3 +2258,230 @@ section {
 .announcement-content::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+/* =========== PRODUCT SURVEY SECTION =========== */
+
+/* Main survey section container */
+.survey-section {
+    padding: 50px 0;
+    background-color: var(--background-light);
+    position: relative;
+}
+
+/* White content card container - horizontal layout */
+.survey-content {
+    background-color: var(--background-white);
+    border-radius: var(--border-radius);
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    transition: var(--transition);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Hover effect for survey content card */
+.survey-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+/* Animated top border on survey card */
+.survey-content:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+/* Show top border on hover */
+.survey-content:hover:before {
+    transform: scaleX(1);
+}
+
+/* Circular icon container */
+.survey-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+    transition: var(--transition-bounce);
+}
+
+/* Hover effect for icon container */
+.survey-content:hover .survey-icon {
+    transform: scale(1.1) rotate(10deg);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+/* Icon inside the circular container */
+.survey-icon i {
+    font-size: 32px;
+    color: var(--text-light);
+}
+
+/* Text container - takes up remaining space */
+.survey-text-container {
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Survey title */
+.survey-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+
+/* Change title color on content hover */
+.survey-content:hover .survey-title {
+    color: var(--primary-color);
+}
+
+/* Survey description text */
+.survey-text {
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Survey call-to-action button */
+.survey-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition: var(--transition-bounce);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* Animated background overlay for button */
+.survey-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    transition: var(--transition);
+}
+
+/* Expand overlay on hover */
+.survey-button:hover:before {
+    width: 100%;
+}
+
+/* Button hover effect */
+.survey-button:hover {
+    background-color: #f59e0b;
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+/* Button active state */
+.survey-button:active {
+    transform: translateY(-1px);
+    box-shadow: var(--box-shadow-sm);
+}
+
+/* Icon inside button */
+.survey-button i {
+    font-size: 18px;
+}
+
+/* =========== RESPONSIVE DESIGN =========== */
+
+/* Tablet and below - switch to vertical layout */
+@media (max-width: 768px) {
+    .survey-section {
+        padding: 40px 0;
+    }
+    
+    .survey-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 25px;
+        gap: 20px;
+    }
+    
+    .survey-text-container {
+        text-align: center;
+    }
+    
+    .survey-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .survey-icon i {
+        font-size: 28px;
+    }
+    
+    .survey-title {
+        font-size: 1.35rem;
+        margin-bottom: 12px;
+    }
+    
+    .survey-text {
+        font-size: 0.9375rem;
+        margin-bottom: 8px;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    .survey-content {
+        padding: 25px 20px;
+    }
+    
+    .survey-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .survey-icon i {
+        font-size: 26px;
+    }
+    
+    .survey-title {
+        font-size: 1.25rem;
+    }
+    
+    .survey-button {
+        padding: 10px 20px;
+        font-size: 0.875rem;
+    }
+}
