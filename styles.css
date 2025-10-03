@@ -258,6 +258,7 @@ a.underline-effect:hover:after {
     z-index: 100;
     padding: 15px 0;
     transition: all 0.4s ease;
+    width: 100%;  /* ADD THIS - ensures navbar is full width of viewport */
 }
 
 /* Navbar when scrolled (compact and translucent) */
@@ -273,6 +274,10 @@ a.underline-effect:hover:after {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* These should already be inherited from .container class: */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Logo styling in navbar */
