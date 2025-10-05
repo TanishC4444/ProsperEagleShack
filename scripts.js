@@ -5,101 +5,30 @@ const backToTopButton = document.querySelector('.back-to-top');
 const announcementsContainer = document.getElementById('announcements-container');
 const opportunitiesContainer = document.getElementById('opportunities-container');
 
-// Sample data for announcements (would normally come from a database)
-const announcements = JSON.parse(localStorage.getItem('eagleShackAnnouncements')) || [
-    {
-        id: 1,
-        title: "Spring Sale",
-        content: "Visit Eagle Shack for our Spring Sale starting next Monday! Get 15% off on all Prosper merchandise, including hoodies, shirts, and caps.",
-        date: "2025-04-28",
-        priority: "normal"
-    },
-    {
-        id: 2,
-        title: "Student Volunteers Needed",
-        content: "We're looking for student volunteers to help with the upcoming basketball tournament concessions. Great opportunity to earn service hours!",
-        date: "2025-05-01",
-        priority: "important"
-    },
-    {
-        id: 3,
-        title: "New Products Alert",
-        content: "We've just added new snacks to our inventory! Come try our new selection of protein bars, trail mix, and healthier snack alternatives.",
-        date: "2025-04-25",
-        priority: "normal"
-    },
-    {
-        id: 4,
-        title: "Price Change Notice",
-        content: "Due to supplier changes, some prices will be adjusted starting May 15. Most items will remain at the same price, but a few may increase by 25¢.",
-        date: "2025-04-30",
-        priority: "urgent"
-    }
-];
+// Firebase database reference (initialized in HTML)
+const database = firebase.database();
 
-// Sample data for opportunities (loaded from localStorage)
-const opportunities = JSON.parse(localStorage.getItem('eagleShackOpportunities')) || [
-    {
-        id: 1,
-        title: "Concession Stand Volunteers",
-        type: "volunteer",
-        description: "Help run the Eagle Shack concession stand during the varsity football game against Allen High School. Tasks include selling snacks, drinks, and merchandise.",
-        date: "2025-05-15",
-        time: "18:00",
-        location: "PHS Stadium",
-        slots: 8,
-        contact: "Coach Thompson"
-    },
-    {
-        id: 2,
-        title: "Marketing Internship",
-        type: "internship",
-        description: "Gain real business experience by helping manage Eagle Shack's social media accounts, creating promotional materials, and planning marketing campaigns.",
-        date: "2025-05-01",
-        time: "15:30",
-        location: "Eagle Shack Store",
-        slots: 2,
-        contact: "Mr. Foster"
-    },
-    {
-        id: 3,
-        title: "Inventory Management Help",
-        type: "volunteer",
-        description: "Assist with receiving shipments, organizing stock, and conducting inventory counts. Perfect for students interested in business operations.",
-        date: "2025-05-05",
-        time: "16:00",
-        location: "Eagle Shack Store",
-        slots: 4,
-        contact: "Ms. Rodriguez"
-    },
-    {
-        id: 4,
-        title: "Graduation Ceremony Sales",
-        type: "event",
-        description: "Sell graduation-themed merchandise and refreshments before and after the senior graduation ceremony. This is one of our biggest events of the year!",
-        date: "2025-05-25",
-        time: "17:00",
-        location: "Prosper Event Center",
-        slots: 12,
-        contact: "Mr. Foster"
-    }
-];
-
-window.addEventListener('storage', function(e) {
-    if (e.key === 'eagleShackAnnouncements') {
-        loadAnnouncements();
-    }
-    if (e.key === 'eagleShackOpportunities') {
-        loadOpportunities();
-    }
-});
+// Data arrays (populated from Firebase)
+let announcements = [];
+let opportunities = [];
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollEvents();
-    loadAnnouncements();
-    loadOpportunities();
+    
+    // Load from Firebase with real-time updates
+    database.ref('announcements').on('value', (snapshot) => {
+        const data = snapshot.val();
+        announcements = data ? Object.values(data) : [];
+        loadAnnouncements();
+    });
+    
+    database.ref('opportunities').on('value', (snapshot) => {
+        const data = snapshot.val();
+        opportunities = data ? Object.values(data) : [];
+        loadOpportunities();
+    });
 });
 
 /**
@@ -327,6 +256,7 @@ function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-US', options);
 }
+
 // FAQ Accordion Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const faqItems = document.querySelectorAll('.faq-item');
@@ -334,17 +264,19 @@ document.addEventListener('DOMContentLoaded', function() {
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         
-        question.addEventListener('click', () => {
-            // Toggle active class on clicked item
-            item.classList.toggle('active');
-            
-            // Close other items when one is opened (optional)
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
+        if (question) {
+            question.addEventListener('click', () => {
+                // Toggle active class on clicked item
+                item.classList.toggle('active');
+                
+                // Close other items when one is opened (optional)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
             });
-        });
+        }
     });
 });
 
@@ -358,8 +290,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // Example: Filter opportunities by type
 function getOpportunitiesByType(type) {
     return opportunities.filter(opp => opp.type === type);
-  }
-  
+}
+
 /**
  * getTotalAvailableSlots
  * Purpose: Calculate the total number of available slots across all opportunities
@@ -370,8 +302,8 @@ function getOpportunitiesByType(type) {
 // Example: Get total available slots across all opportunities
 function getTotalAvailableSlots() {
     return opportunities.reduce((total, opp) => total + opp.slots, 0);
-  }
-  
+}
+
 /**
  * getAnnouncementsByPriority
  * Purpose: Group announcements by their priority level
@@ -382,11 +314,11 @@ function getTotalAvailableSlots() {
 // Example: Group announcements by priority
 function getAnnouncementsByPriority() {
     return announcements.reduce((groups, announcement) => {
-    const priority = announcement.priority;
-    if (!groups[priority]) {
-        groups[priority] = [];
-    }
-    groups[priority].push(announcement);
-    return groups;
+        const priority = announcement.priority;
+        if (!groups[priority]) {
+            groups[priority] = [];
+        }
+        groups[priority].push(announcement);
+        return groups;
     }, {});
 }

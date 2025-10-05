@@ -8,7 +8,7 @@ const logoutBtn = document.getElementById('logout-btn');
 const announcementsList = document.getElementById('admin-announcements-list');
 const addAnnouncementBtn = document.getElementById('add-announcement-btn');
 const announcementForm = document.getElementById('announcement-form');
-const announcementEditor = document.getElementById('announcement-editor');  // This is the actual form element
+const announcementEditor = document.getElementById('announcement-editor');
 const cancelAnnouncementBtn = document.getElementById('cancel-announcement-btn');
 const announcementFormTitle = document.getElementById('announcement-form-title');
 
@@ -16,108 +16,35 @@ const announcementFormTitle = document.getElementById('announcement-form-title')
 const opportunitiesList = document.getElementById('admin-opportunities-list');
 const addOpportunityBtn = document.getElementById('add-opportunity-btn');
 const opportunityForm = document.getElementById('opportunity-form');
-const opportunityEditor = document.getElementById('opportunity-editor');  // This is the actual form element
+const opportunityEditor = document.getElementById('opportunity-editor');
 const cancelOpportunityBtn = document.getElementById('cancel-opportunity-btn');
 const opportunityFormTitle = document.getElementById('opportunity-form-title');
 
-// Sample data (in a real app, this would be stored in a database)
-let announcements = JSON.parse(localStorage.getItem('eagleShackAnnouncements')) || [
-    {
-        id: 1,
-        title: "Spring Sale",
-        content: "Visit Eagle Shack for our Spring Sale starting next Monday! Get 15% off on all Prosper merchandise, including hoodies, shirts, and caps.",
-        date: "2025-04-28",
-        priority: "normal"
-    },
-    {
-        id: 2,
-        title: "Student Volunteers Needed",
-        content: "We're looking for student volunteers to help with the upcoming basketball tournament concessions. Great opportunity to earn service hours!",
-        date: "2025-05-01",
-        priority: "important"
-    },
-    {
-        id: 3,
-        title: "New Products Alert",
-        content: "We've just added new snacks to our inventory! Come try our new selection of protein bars, trail mix, and healthier snack alternatives.",
-        date: "2025-04-25",
-        priority: "normal"
-    },
-    {
-        id: 4,
-        title: "Price Change Notice",
-        content: "Due to supplier changes, some prices will be adjusted starting May 15. Most items will remain at the same price, but a few may increase by 25¢.",
-        date: "2025-04-30",
-        priority: "urgent"
-    }
-];
+// Firebase database reference (initialized in HTML)
+const database = firebase.database();
 
-let opportunities = JSON.parse(localStorage.getItem('eagleShackOpportunities')) || [
-    {
-        id: 1,
-        title: "Concession Stand Volunteers",
-        type: "volunteer",
-        description: "Help run the Eagle Shack concession stand during the varsity football game against Allen High School. Tasks include selling snacks, drinks, and merchandise.",
-        date: "2025-05-15",
-        time: "18:00",
-        location: "PHS Stadium",
-        slots: 8,
-        contact: "Coach Thompson"
-    },
-    {
-        id: 2,
-        title: "Marketing Internship",
-        type: "internship",
-        description: "Gain real business experience by helping manage Eagle Shack's social media accounts, creating promotional materials, and planning marketing campaigns.",
-        date: "2025-05-01",
-        time: "15:30",
-        location: "Eagle Shack Store",
-        slots: 2,
-        contact: "Mr. Foster"
-    },
-    {
-        id: 3,
-        title: "Inventory Management Help",
-        type: "volunteer",
-        description: "Assist with receiving shipments, organizing stock, and conducting inventory counts. Perfect for students interested in business operations.",
-        date: "2025-05-05",
-        time: "16:00",
-        location: "Eagle Shack Store",
-        slots: 4,
-        contact: "Ms. Rodriguez"
-    },
-    {
-        id: 4,
-        title: "Graduation Ceremony Sales",
-        type: "event",
-        description: "Sell graduation-themed merchandise and refreshments before and after the senior graduation ceremony. This is one of our biggest events of the year!",
-        date: "2025-05-25",
-        time: "17:00",
-        location: "Prosper Event Center",
-        slots: 12,
-        contact: "Mr. Foster"
-    }
-];
+// Data arrays (populated from Firebase)
+let announcements = [];
+let opportunities = [];
 
 // Initialize the admin dashboard
 document.addEventListener('DOMContentLoaded', () => {
     initAdminDashboard();
     loadAdminInfo();
-    loadAnnouncements();
-    loadOpportunities();
     initLogout();
-});
-
-// Listen for localStorage changes from other tabs
-window.addEventListener('storage', function(e) {
-    if (e.key === 'eagleShackAnnouncements') {
-        announcements = JSON.parse(e.newValue || '[]');
+    
+    // Load from Firebase with real-time updates
+    database.ref('announcements').on('value', (snapshot) => {
+        const data = snapshot.val();
+        announcements = data ? Object.values(data) : [];
         loadAnnouncements();
-    }
-    if (e.key === 'eagleShackOpportunities') {
-        opportunities = JSON.parse(e.newValue || '[]');
+    });
+    
+    database.ref('opportunities').on('value', (snapshot) => {
+        const data = snapshot.val();
+        opportunities = data ? Object.values(data) : [];
         loadOpportunities();
-    }
+    });
 });
 
 /**
@@ -161,7 +88,6 @@ function initAdminDashboard() {
         });
     }
     
-    // FIX: Use announcementEditor instead of announcementForm for the submit event
     if (announcementEditor) {
         announcementEditor.addEventListener('submit', handleAnnouncementSubmit);
     }
@@ -179,7 +105,6 @@ function initAdminDashboard() {
         });
     }
     
-    // FIX: Use opportunityEditor instead of opportunityForm for the submit event
     if (opportunityEditor) {
         opportunityEditor.addEventListener('submit', handleOpportunitySubmit);
     }
@@ -314,7 +239,6 @@ function showAnnouncementForm(mode, announcementData = null) {
     // Set form title based on mode
     announcementFormTitle.textContent = mode === 'add' ? 'Add New Announcement' : 'Edit Announcement';
     
-    // FIX: Use announcementEditor (the form) to reset instead of announcementForm (the container)
     if (announcementEditor) {
         announcementEditor.reset();
     }
@@ -372,15 +296,20 @@ function editAnnouncement(id) {
  * deleteAnnouncement
  * Purpose: Delete an announcement after confirmation
  * Input: id (number)
- * Output: return: None, environment changes: Removes announcement from array and updates localStorage
+ * Output: return: None, environment changes: Removes announcement from Firebase
  * Error handling: Confirms deletion with user before proceeding
  */
 // Delete an announcement
 function deleteAnnouncement(id) {
     if (confirm('Are you sure you want to delete this announcement?')) {
-        announcements = announcements.filter(a => a.id !== id);
-        localStorage.setItem('eagleShackAnnouncements', JSON.stringify(announcements));
-        loadAnnouncements();
+        database.ref('announcements/' + id).remove()
+            .then(() => {
+                console.log('Announcement deleted successfully');
+            })
+            .catch((error) => {
+                console.error('Error deleting announcement:', error);
+                alert('Failed to delete announcement. Please try again.');
+            });
     }
 }
 
@@ -388,7 +317,7 @@ function deleteAnnouncement(id) {
  * handleAnnouncementSubmit
  * Purpose: Process announcement form submission for create or update
  * Input: e (event object)
- * Output: return: None, environment changes: Updates announcements array and localStorage
+ * Output: return: None, environment changes: Updates Firebase with announcement data
  * Error handling: Validates required fields, prevents default form submission
  */
 // Handle announcement form submission
@@ -410,36 +339,40 @@ function handleAnnouncementSubmit(e) {
     if (announcementId) {
         // Update existing announcement
         const id = parseInt(announcementId);
-        const index = announcements.findIndex(a => a.id === id);
-        
-        if (index !== -1) {
-            announcements[index] = {
-                id,
-                title,
-                content,
-                date,
-                priority
-            };
-        }
+        database.ref('announcements/' + id).set({
+            id,
+            title,
+            content,
+            date,
+            priority
+        })
+        .then(() => {
+            console.log('Announcement updated successfully');
+            hideAnnouncementForm();
+        })
+        .catch((error) => {
+            console.error('Error updating announcement:', error);
+            alert('Failed to update announcement. Please try again.');
+        });
     } else {
         // Create new announcement
         const newId = announcements.length > 0 ? Math.max(...announcements.map(a => a.id)) + 1 : 1;
-        
-        announcements.push({
+        database.ref('announcements/' + newId).set({
             id: newId,
             title,
             content,
             date,
             priority
+        })
+        .then(() => {
+            console.log('Announcement created successfully');
+            hideAnnouncementForm();
+        })
+        .catch((error) => {
+            console.error('Error creating announcement:', error);
+            alert('Failed to create announcement. Please try again.');
         });
     }
-    
-    // Update localStorage to save changes
-    localStorage.setItem('eagleShackAnnouncements', JSON.stringify(announcements));
-
-    // Hide form and refresh list
-    hideAnnouncementForm();
-    loadAnnouncements();
 }
 
 // =========== OPPORTUNITIES MANAGEMENT ===========
@@ -538,7 +471,6 @@ function showOpportunityForm(mode, opportunityData = null) {
     // Set form title based on mode
     opportunityFormTitle.textContent = mode === 'add' ? 'Add New Volunteer Opportunity' : 'Edit Volunteer Opportunity';
     
-    // FIX: Use opportunityEditor (the form) to reset instead of opportunityForm (the container)
     if (opportunityEditor) {
         opportunityEditor.reset();
     }
@@ -600,15 +532,20 @@ function editOpportunity(id) {
  * deleteOpportunity
  * Purpose: Delete an opportunity after confirmation
  * Input: id (number)
- * Output: return: None, environment changes: Removes opportunity from array and updates localStorage
+ * Output: return: None, environment changes: Removes opportunity from Firebase
  * Error handling: Confirms deletion with user before proceeding
  */
 // Delete an opportunity
 function deleteOpportunity(id) {
     if (confirm('Are you sure you want to delete this volunteer opportunity?')) {
-        opportunities = opportunities.filter(o => o.id !== id);
-        localStorage.setItem('eagleShackOpportunities', JSON.stringify(opportunities));
-        loadOpportunities();
+        database.ref('opportunities/' + id).remove()
+            .then(() => {
+                console.log('Opportunity deleted successfully');
+            })
+            .catch((error) => {
+                console.error('Error deleting opportunity:', error);
+                alert('Failed to delete opportunity. Please try again.');
+            });
     }
 }
 
@@ -616,7 +553,7 @@ function deleteOpportunity(id) {
  * handleOpportunitySubmit
  * Purpose: Process opportunity form submission for create or update
  * Input: e (event object)
- * Output: return: None, environment changes: Updates opportunities array and localStorage
+ * Output: return: None, environment changes: Updates Firebase with opportunity data
  * Error handling: Validates required fields, prevents default form submission
  */
 // Handle opportunity form submission
@@ -642,26 +579,29 @@ function handleOpportunitySubmit(e) {
     if (opportunityId) {
         // Update existing opportunity
         const id = parseInt(opportunityId);
-        const index = opportunities.findIndex(o => o.id === id);
-        
-        if (index !== -1) {
-            opportunities[index] = {
-                id,
-                title,
-                type,
-                description,
-                date,
-                time,
-                location,
-                slots,
-                contact
-            };
-        }
+        database.ref('opportunities/' + id).set({
+            id,
+            title,
+            type,
+            description,
+            date,
+            time,
+            location,
+            slots,
+            contact
+        })
+        .then(() => {
+            console.log('Opportunity updated successfully');
+            hideOpportunityForm();
+        })
+        .catch((error) => {
+            console.error('Error updating opportunity:', error);
+            alert('Failed to update opportunity. Please try again.');
+        });
     } else {
         // Create new opportunity
         const newId = opportunities.length > 0 ? Math.max(...opportunities.map(o => o.id)) + 1 : 1;
-        
-        opportunities.push({
+        database.ref('opportunities/' + newId).set({
             id: newId,
             title,
             type,
@@ -671,15 +611,16 @@ function handleOpportunitySubmit(e) {
             location,
             slots,
             contact
+        })
+        .then(() => {
+            console.log('Opportunity created successfully');
+            hideOpportunityForm();
+        })
+        .catch((error) => {
+            console.error('Error creating opportunity:', error);
+            alert('Failed to create opportunity. Please try again.');
         });
     }
-    
-    // Update localStorage to save changes
-    localStorage.setItem('eagleShackOpportunities', JSON.stringify(opportunities));
-    
-    // Hide form and refresh list
-    hideOpportunityForm();
-    loadOpportunities();
 }
 
 /**

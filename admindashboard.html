@@ -222,6 +222,25 @@
     </footer>
 
     <!-- Link to external JavaScript file for interactive functionality -->
+     <!-- Firebase SDK - MUST come first -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <!-- Firebase Config - MUST come second -->
+    <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyARZ2FkmXFNoOXiRHpYjTZZQJw74o5YT7Y",
+        authDomain: "eagle-shack.firebaseapp.com",
+        databaseURL: "https://eagle-shack-default-rtdb.firebaseio.com",
+        projectId: "eagle-shack",
+        storageBucket: "eagle-shack.firebasestorage.app",
+        messagingSenderId: "102815168895",
+        appId: "1:102815168895:web:367f184ca02e2d9f19824a",
+        measurementId: "G-W9J8MG3CZT"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    </script>
     <script src="auth.js"></script>
     <script src="admin.js"></script>
     <script>
