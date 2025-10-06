@@ -1,11 +1,28 @@
-// Simple password authentication for Eagle Shack Admin
-// WARNING: This stores the password in plain text - anyone can see it in the code
+// Firebase Authentication for Eagle Shack Admin
+// Password-only login with secure backend authentication
 
-const ADMIN_PASSWORD = "EagleShack2025!";
+// Firebase Configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyARZ2FkmXFNoOXiRHpYjTZZQJw74o5YT7Y",
+    authDomain: "eagle-shack.firebaseapp.com",
+    databaseURL: "https://eagle-shack-default-rtdb.firebaseio.com",
+    projectId: "eagle-shack",
+    storageBucket: "eagle-shack.firebasestorage.app",
+    messagingSenderId: "102815168895",
+    appId: "1:102815168895:web:367f184ca02e2d9f19824a",
+    measurementId: "G-W9J8MG3CZT"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
 
 // DOM Elements
 const loginForm = document.getElementById('login-form');
 const authMessage = document.getElementById('auth-message');
+
+// Fixed admin email (not visible to user)
+const ADMIN_EMAIL = 'admin@eagleshack.com';
 
 // Initialize the authentication events
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,45 +38,66 @@ function initAuthEvents() {
     if (loginForm) {
         loginForm.addEventListener('submit', handleLogin);
     }
+    
+    // Listen for auth state changes
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            // User is signed in
+            if (window.location.pathname.includes('login.html') || window.location.pathname.includes('admin.html')) {
+                window.location.href = 'admindashboard.html';
+            }
+        } else {
+            // User is signed out
+            if (window.location.pathname.includes('admindashboard.html')) {
+                window.location.href = 'login.html';
+            }
+        }
+    });
 }
 
 /**
  * handleLogin
- * Purpose: Process login form submission and authenticate user
+ * Purpose: Process login form submission - password only
  */
-function handleLogin(e) {
+async function handleLogin(e) {
     e.preventDefault();
     
     const password = document.getElementById('password').value;
     
     // Validate password is not empty
     if (!password) {
-        showAuthMessage('Please enter the administrator password', 'error');
+        showAuthMessage('Please enter your password', 'error');
         return;
     }
     
-    // Direct password comparison
-    if (password !== ADMIN_PASSWORD) {
-        showAuthMessage('Incorrect password', 'error');
+    try {
+        // Sign in with fixed email and user's password
+        await auth.signInWithEmailAndPassword(ADMIN_EMAIL, password);
+        
+        showAuthMessage('Access granted! Redirecting...', 'success');
+        
+        // Redirect happens automatically via onAuthStateChanged
+        setTimeout(() => {
+            window.location.href = 'admindashboard.html';
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Login error:', error);
+        
+        // Handle different error types
+        let errorMessage = 'Incorrect password';
+        
+        if (error.code === 'auth/too-many-requests') {
+            errorMessage = 'Too many attempts. Please try again later.';
+        } else if (error.code === 'auth/network-request-failed') {
+            errorMessage = 'Network error. Please check your connection.';
+        }
+        
+        showAuthMessage(errorMessage, 'error');
+        
         // Clear the password field
         document.getElementById('password').value = '';
-        return;
     }
-    
-    // Store authentication in session storage
-    const authData = {
-        loggedIn: true,
-        timestamp: new Date().getTime()
-    };
-    
-    sessionStorage.setItem('eagleShackAuth', JSON.stringify(authData));
-    
-    showAuthMessage('Access granted! Redirecting...', 'success');
-    
-    // Redirect to admin dashboard
-    setTimeout(() => {
-        window.location.href = 'admindashboard.html';
-    }, 1000);
 }
 
 /**
@@ -83,31 +121,31 @@ function showAuthMessage(message, type) {
  * Purpose: Check if user is authenticated and redirect accordingly
  */
 function checkAuthStatus() {
-    const authData = JSON.parse(sessionStorage.getItem('eagleShackAuth') || 'null');
-    
-    // Check if session is valid (logged in within last 2 hours)
-    const isValid = authData && 
-                   authData.loggedIn && 
-                   (new Date().getTime() - authData.timestamp < 2 * 60 * 60 * 1000);
-    
-    // If on login page and already logged in, redirect to dashboard
-    if (window.location.pathname.includes('login.html') && isValid) {
-        window.location.href = 'admindashboard.html';
-    }
-    
-    // If on admin dashboard and not logged in, redirect to login
-    if (window.location.pathname.includes('admindashboard.html') && !isValid) {
-        window.location.href = 'login.html';
-    }
+    auth.onAuthStateChanged(user => {
+        // If on login page and already logged in, redirect to dashboard
+        if ((window.location.pathname.includes('login.html') || window.location.pathname.includes('admin.html')) && user) {
+            window.location.href = 'admindashboard.html';
+        }
+        
+        // If on admin dashboard and not logged in, redirect to login
+        if (window.location.pathname.includes('admindashboard.html') && !user) {
+            window.location.href = 'login.html';
+        }
+    });
 }
 
 /**
  * logout
  * Purpose: Log out the user and clear session
  */
-function logout() {
-    sessionStorage.removeItem('eagleShackAuth');
-    window.location.href = 'index.html';
+async function logout() {
+    try {
+        await auth.signOut();
+        window.location.href = 'index.html';
+    } catch (error) {
+        console.error('Logout error:', error);
+        alert('Error logging out. Please try again.');
+    }
 }
 
 // Export logout function for use in admin dashboard
