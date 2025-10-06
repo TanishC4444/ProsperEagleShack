@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Sets character encoding -->
     <meta charset="UTF-8">
-    <!-- Enables responsive behavior on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Page title in browser tab -->
     <title>Admin Dashboard - Eagle Shack</title>
 
-    <!-- Link to external CSS stylesheet -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Link to Font Awesome for using icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -18,21 +13,18 @@
     <!-- NAVIGATION BAR -->
     <nav class="navbar">
         <div class="container">
-            <!-- Logo and brand name -->
             <div class="nav-logo">
-                <i class="fas fa-store logo-icon"></i> <!-- Store icon -->
-                <span class="logo-text">Eagle Shack</span> <!-- Store name -->
+                <i class="fas fa-store logo-icon"></i>
+                <span class="logo-text">Eagle Shack</span>
             </div>
 
-            <!-- Navigation links -->
             <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li> <!-- Home link -->
-                <li class="nav-item"><a href="index.html#announcements" class="nav-link">Announcements</a></li> <!-- Announcements section link -->
-                <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer Opportunities</a></li> <!-- Volunteer page link -->
-                <li class="nav-item"><a href="#" class="nav-link" id="logout-btn">Logout</a></li> <!-- Logout action -->
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#announcements" class="nav-link">Announcements</a></li>
+                <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer Opportunities</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="logout-btn">Logout</a></li>
             </ul>
 
-            <!-- Hamburger menu icon (for mobile responsiveness) -->
             <div class="nav-toggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -43,9 +35,7 @@
     <section class="admin-header">
         <div class="container">
             <div class="admin-welcome">
-                <!-- Dashboard title with icon -->
                 <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
-                <!-- Personalized welcome message -->
                 <p>Welcome, <span id="admin-name">Administrator</span>! Manage Eagle Shack announcements and volunteer opportunities here.</p>
             </div>
         </div>
@@ -55,7 +45,6 @@
     <section class="admin-dashboard">
         <div class="container">
 
-            <!-- Dashboard tab buttons for switching views -->
             <div class="dashboard-tabs">
                 <button class="tab-btn active" data-tab="announcements">
                     <i class="fas fa-bullhorn"></i> Announcements
@@ -67,7 +56,6 @@
 
             <!-- ANNOUNCEMENTS TAB -->
             <div class="tab-content active" id="announcements-tab">
-                <!-- Section header and 'Add New' button -->
                 <div class="admin-section-header">
                     <h2>Manage Announcements</h2>
                     <button class="add-btn" id="add-announcement-btn">
@@ -75,33 +63,27 @@
                     </button>
                 </div>
 
-                <!-- Hidden form for adding/editing announcements -->
                 <div class="admin-form" id="announcement-form" style="display: none;">
                     <h3 id="announcement-form-title">Add New Announcement</h3>
 
                     <form id="announcement-editor">
-                        <!-- Hidden input for internal ID tracking -->
                         <input type="hidden" id="announcement-id">
 
-                        <!-- Title field -->
                         <div class="form-group">
                             <label for="announcement-title">Title</label>
                             <input type="text" id="announcement-title" name="announcement-title" required>
                         </div>
 
-                        <!-- Content/description text area -->
                         <div class="form-group">
                             <label for="announcement-content">Content</label>
                             <textarea id="announcement-content" name="announcement-content" rows="5" required></textarea>
                         </div>
 
-                        <!-- Date selector -->
                         <div class="form-group">
                             <label for="announcement-date">Date</label>
                             <input type="date" id="announcement-date" name="announcement-date" required>
                         </div>
 
-                        <!-- Priority dropdown -->
                         <div class="form-group">
                             <label for="announcement-priority">Priority</label>
                             <select id="announcement-priority" name="announcement-priority">
@@ -111,7 +93,6 @@
                             </select>
                         </div>
 
-                        <!-- Submit and Cancel buttons -->
                         <div class="form-actions">
                             <button type="submit" class="submit-btn">Save Announcement</button>
                             <button type="button" class="cancel-btn" id="cancel-announcement-btn">Cancel</button>
@@ -119,16 +100,13 @@
                     </form>
                 </div>
 
-                <!-- Display area for announcement items -->
                 <div class="admin-items-list" id="admin-announcements-list">
-                    <!-- Shown while data is loading -->
                     <div class="admin-list-message">Loading announcements...</div>
                 </div>
             </div>
 
             <!-- VOLUNTEER OPPORTUNITIES TAB -->
             <div class="tab-content" id="volunteer-tab">
-                <!-- Section header and 'Add New' button -->
                 <div class="admin-section-header">
                     <h2>Manage Volunteer Opportunities & Internships</h2>
                     <button class="add-btn" id="add-opportunity-btn">
@@ -136,21 +114,17 @@
                     </button>
                 </div>
 
-                <!-- Hidden form for adding/editing opportunities -->
                 <div class="admin-form" id="opportunity-form" style="display: none;">
                     <h3 id="opportunity-form-title">Add New Volunteer Opportunity</h3>
 
                     <form id="opportunity-editor">
-                        <!-- Hidden input for internal ID tracking -->
                         <input type="hidden" id="opportunity-id">
 
-                        <!-- Opportunity title -->
                         <div class="form-group">
                             <label for="opportunity-title">Title</label>
                             <input type="text" id="opportunity-title" name="opportunity-title" required>
                         </div>
 
-                        <!-- Opportunity type selection -->
                         <div class="form-group">
                             <label for="opportunity-type">Type</label>
                             <select id="opportunity-type" name="opportunity-type">
@@ -160,13 +134,11 @@
                             </select>
                         </div>
 
-                        <!-- Description of the opportunity -->
                         <div class="form-group">
                             <label for="opportunity-description">Description</label>
                             <textarea id="opportunity-description" name="opportunity-description" rows="5" required></textarea>
                         </div>
 
-                        <!-- Date and time in a side-by-side layout -->
                         <div class="form-group form-row">
                             <div class="form-col">
                                 <label for="opportunity-date">Date</label>
@@ -178,35 +150,29 @@
                             </div>
                         </div>
 
-                        <!-- Location input -->
                         <div class="form-group">
                             <label for="opportunity-location">Location</label>
                             <input type="text" id="opportunity-location" name="opportunity-location" required>
                         </div>
 
-                        <!-- Slot availability input -->
                         <div class="form-group">
                             <label for="opportunity-slots">Available Slots</label>
                             <input type="number" id="opportunity-slots" name="opportunity-slots" min="1" value="1">
                         </div>
                         
-                        <!-- Contact Information Relating to opportunity-->
                         <div class="form-group">
                             <label for="opportunity-contact">Contact Person</label>
                             <input type="text" id="opportunity-contact" name="opportunity-contact" required>
                         </div>
                         
-                         <!-- Submit and Cancel buttons -->
-                         <div class="form-actions">
+                        <div class="form-actions">
                             <button type="submit" class="submit-btn">Save Opportunity</button>
                             <button type="button" class="cancel-btn" id="cancel-opportunity-btn">Cancel</button>
                         </div>
                     </form>
                 </div>
 
-                <!-- Display area for volunteer/internship opportunities -->
                 <div class="admin-items-list" id="admin-opportunities-list">
-                    <!-- Placeholder message while loading -->
                     <div class="admin-list-message">Loading opportunities...</div>
                 </div>
             </div>
@@ -216,17 +182,16 @@
     <!-- FOOTER SECTION -->
     <footer class="footer">
         <div class="container">
-            <!-- Footer text with copyright -->
             <p>&copy; 2025 Eagle Shack. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Link to external JavaScript file for interactive functionality -->
-     <!-- Firebase SDK - MUST come first -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
-    <!-- Firebase Config - MUST come second -->
+    <!-- Initialize Firebase ONCE -->
     <script>
     const firebaseConfig = {
         apiKey: "AIzaSyARZ2FkmXFNoOXiRHpYjTZZQJw74o5YT7Y",
@@ -241,14 +206,8 @@
     
     firebase.initializeApp(firebaseConfig);
     </script>
-    <script src="auth.js"></script>
+
+    <!-- Load admin dashboard script -->
     <script src="admin.js"></script>
-    <script>
-        // Handle logout button
-        document.getElementById('logout-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            logout();
-        });
-    </script>
 </body>
 </html>
