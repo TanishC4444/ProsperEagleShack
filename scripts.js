@@ -12,24 +12,202 @@ const database = firebase.database();
 let announcements = [];
 let opportunities = [];
 
+// Analytics tracking object
+const analytics = {
+    pageViews: 0,
+    interactions: {
+        announcementsViewed: 0,
+        opportunitiesViewed: 0,
+        navigationClicks: 0,
+        faqAccordionClicks: 0
+    },
+    sessionStart: new Date(),
+    userId: generateUserId() // Generate unique session ID
+};
+
+/**
+ * generateUserId
+ * Purpose: Generate a unique session identifier
+ * Input: None
+ * Output: return: Unique session ID string
+ */
+function generateUserId() {
+    return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+/**
+ * trackAnalytic
+ * Purpose: Log analytics event to Firebase in real-time
+ * Input: eventType (string), eventData (object)
+ * Output: return: None, environment changes: Updates Firebase analytics database
+ */
+function trackAnalytic(eventType, eventData = {}) {
+    const timestamp = new Date().toISOString();
+    const analyticsRef = database.ref('analytics');
+    
+    const event = {
+        eventType,
+        userId: analytics.userId,
+        timestamp,
+        sessionStart: analytics.sessionStart.toISOString(),
+        userAgent: navigator.userAgent,
+        url: window.location.href,
+        ...eventData
+    };
+    
+    // Push to analytics collection (creates new entry)
+    analyticsRef.push(event)
+        .catch(error => console.error('Analytics tracking error:', error));
+}
+
+/**
+ * trackPageView
+ * Purpose: Track initial page load
+ * Input: None
+ * Output: return: None, environment changes: Increments page view count and logs to Firebase
+ */
+function trackPageView() {
+    analytics.pageViews++;
+    trackAnalytic('page_view', {
+        pageTitle: document.title,
+        referrer: document.referrer
+    });
+}
+
+/**
+ * trackInteraction
+ * Purpose: Track user interactions with specific elements
+ * Input: interactionType (string), elementName (string), additionalData (object)
+ * Output: return: None, environment changes: Updates interaction counter and logs to Firebase
+ */
+function trackInteraction(interactionType, elementName, additionalData = {}) {
+    analytics.interactions[interactionType] = (analytics.interactions[interactionType] || 0) + 1;
+    trackAnalytic('interaction', {
+        interactionType,
+        elementName,
+        ...additionalData
+    });
+}
+
+/**
+ * trackEngagement
+ * Purpose: Track time spent on page and sections viewed
+ * Input: sectionName (string), duration (number in milliseconds)
+ * Output: return: None, environment changes: Logs engagement data to Firebase
+ */
+function trackEngagement(sectionName, duration) {
+    trackAnalytic('engagement', {
+        section: sectionName,
+        durationMs: duration,
+        scrollDepth: calculateScrollDepth()
+    });
+}
+
+/**
+ * calculateScrollDepth
+ * Purpose: Calculate how far down the page the user has scrolled
+ * Input: None
+ * Output: return: Scroll depth as percentage (number 0-100)
+ */
+function calculateScrollDepth() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    return height > 0 ? Math.round((winScroll / height) * 100) : 0;
+}
+
+/**
+ * trackConversion
+ * Purpose: Track important user actions (e.g., signup, opportunity registration)
+ * Input: conversionType (string), value (number), details (object)
+ * Output: return: None, environment changes: Logs conversion to Firebase
+ */
+function trackConversion(conversionType, value = 1, details = {}) {
+    trackAnalytic('conversion', {
+        conversionType,
+        value,
+        ...details
+    });
+}
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
+    trackPageView();
     initNavigation();
     initScrollEvents();
+    initAnalyticsTracking();
     
     // Load from Firebase with real-time updates
     database.ref('announcements').on('value', (snapshot) => {
         const data = snapshot.val();
         announcements = data ? Object.values(data) : [];
         loadAnnouncements();
+        trackInteraction('announcementsViewed', 'announcements-container', {
+            count: announcements.length
+        });
     });
     
     database.ref('opportunities').on('value', (snapshot) => {
         const data = snapshot.val();
         opportunities = data ? Object.values(data) : [];
         loadOpportunities();
+        trackInteraction('opportunitiesViewed', 'opportunities-container', {
+            count: opportunities.length
+        });
     });
 });
+
+/**
+ * initAnalyticsTracking
+ * Purpose: Initialize all analytics event listeners
+ * Input: None
+ * Output: return: None, environment changes: Sets up analytics event listeners
+ */
+function initAnalyticsTracking() {
+    // Track navigation clicks
+    const navLinks = document.querySelectorAll('nav a, .nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            trackInteraction('navigationClicks', 'nav_link', {
+                linkText: link.textContent,
+                href: link.getAttribute('href')
+            });
+        });
+    });
+    
+    // Track opportunity card clicks
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.opportunity-card')) {
+            const card = e.target.closest('.opportunity-card');
+            trackInteraction('opportunityClicked', 'opportunity_card', {
+                opportunityTitle: card.querySelector('.opportunity-title')?.textContent,
+                opportunityType: card.dataset.type
+            });
+        }
+        if (e.target.closest('.announcement-card')) {
+            const card = e.target.closest('.announcement-card');
+            trackInteraction('announcementClicked', 'announcement_card', {
+                announcementTitle: card.querySelector('.announcement-title')?.textContent
+            });
+        }
+    });
+    
+    // Track time spent on page
+    setInterval(() => {
+        trackEngagement('current_session', 60000); // Track every minute
+    }, 60000);
+    
+    // Track page visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            trackAnalytic('session_end', {
+                totalInteractions: Object.values(analytics.interactions).reduce((a, b) => a + b, 0),
+                scrollDepth: calculateScrollDepth()
+            });
+        } else {
+            trackAnalytic('session_resume');
+        }
+    });
+}
 
 /**
  * initNavigation
@@ -44,6 +222,9 @@ function initNavigation() {
     
     navToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
+        trackInteraction('navigationClicks', 'mobile_menu_toggle', {
+            menuState: navMenu.classList.contains('active') ? 'opened' : 'closed'
+        });
     });
 
     // Close menu when clicking outside
@@ -71,6 +252,11 @@ function initNavigation() {
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
+                });
+                
+                trackInteraction('navigationClicks', 'anchor_link', {
+                    targetId: targetId,
+                    targetName: targetElement.textContent?.substring(0, 50)
                 });
                 
                 // Close mobile menu when clicking a link
@@ -108,6 +294,7 @@ function initScrollEvents() {
             top: 0,
             behavior: 'smooth'
         });
+        trackInteraction('navigationClicks', 'back_to_top_button');
     });
 }
 
@@ -268,6 +455,12 @@ document.addEventListener('DOMContentLoaded', function() {
             question.addEventListener('click', () => {
                 // Toggle active class on clicked item
                 item.classList.toggle('active');
+                
+                // Track FAQ accordion interaction
+                trackInteraction('faqAccordionClicks', 'faq_question', {
+                    questionText: question.textContent?.substring(0, 50),
+                    opened: item.classList.contains('active')
+                });
                 
                 // Close other items when one is opened (optional)
                 faqItems.forEach(otherItem => {
